@@ -137,12 +137,6 @@
   <ItemGroup>
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CLASS_H.h" />
-    <ClInclude Include="TEXT.h" />
-    <ClInclude Include="TIME_S.h" />
-    <ClInclude Include="TXT_S.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
