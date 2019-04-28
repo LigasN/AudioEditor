@@ -77,7 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Dokumenty\Pulpit\programming_stuff\SFML-2.5.1\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Dokumenty\Pulpit\programming_stuff\SFML-2.5.1\lib</AdditionalLibraryDirectories>
@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Dokumenty\Pulpit\programming_stuff\SFML-2.5.1\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Dokumenty\Pulpit\programming_stuff\SFML-2.5.1\lib</AdditionalLibraryDirectories>
@@ -135,7 +135,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="C_TEXTS.cpp" />
+    <ClCompile Include="Prog.cpp" />
+    <ClCompile Include="TXT_Body.cpp" />
+    <ClCompile Include="TXT_Body_English.cpp" />
+    <ClCompile Include="TXT_Body_French.cpp" />
+    <ClCompile Include="TXT_Body_Italian.cpp" />
+    <ClCompile Include="TXT_Body_Polish.cpp" />
+    <ClCompile Include="TXT_Handle.cpp" />
     <ClCompile Include="Źródło.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C_TEXTS.h" />
+    <ClInclude Include="Prog.h" />
+    <ClInclude Include="TXT_Body.h" />
+    <ClInclude Include="TXT_Body_English.h" />
+    <ClInclude Include="TXT_Body_French.h" />
+    <ClInclude Include="TXT_Body_Italian.h" />
+    <ClInclude Include="TXT_Body_Polish.h" />
+    <ClInclude Include="TXT_Handle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
