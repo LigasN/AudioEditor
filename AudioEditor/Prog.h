@@ -9,6 +9,7 @@
 #include <SFML/Window.hpp>
 #include "C_TEXTS.h"
 #include <memory>
+#include <assert.h>
 
 
 class Prog

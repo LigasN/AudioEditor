@@ -24,8 +24,12 @@ Prog * Prog::getInstance()
 
 bool Prog::Update(sf::RenderWindow& window)
 {
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+
+	sf::Texture backgroundTexture;
+	if (backgroundTexture.loadFromFile("Background.png")) assert("Error with textures");
+
+	sf::Sprite backgoundSprite;
+	backgoundSprite.setTexture(backgroundTexture);
 
 	sf::Event event;
 	while (window.pollEvent(event))
@@ -38,7 +42,7 @@ bool Prog::Update(sf::RenderWindow& window)
 	}
 
 	window.clear();
-	window.draw(shape);
+	window.draw(backgoundSprite);
 	window.display();
 	return EXIT_SUCCESS;
 }
