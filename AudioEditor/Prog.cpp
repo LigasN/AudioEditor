@@ -1,7 +1,7 @@
 #include "Prog.h"
 #include <iostream>  //to delete after tests
 
-Prog::Prog()
+Prog::Prog() : buttons()
 {
 	Exit = 0;
 }
@@ -39,10 +39,18 @@ bool Prog::Update(sf::RenderWindow& window)
 			window.close();
 			return EXIT_SUCCESS;
 		}
+
+	}
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		buttons.ButtonUpdate(window);
+		while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 	}
 
 	window.clear();
 	window.draw(backgoundSprite);
+	window.draw(buttons);
 	window.display();
 	return EXIT_SUCCESS;
 }

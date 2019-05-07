@@ -135,6 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConvexButton.cpp" />
+    <ClCompile Include="RectangleButton.cpp" />
+    <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="C_TEXTS.cpp" />
     <ClCompile Include="Prog.cpp" />
     <ClCompile Include="TXT_Body.cpp" />
@@ -146,6 +149,9 @@
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConvexButton.h" />
+    <ClInclude Include="RectangleButton.h" />
+    <ClInclude Include="Buttons.h" />
     <ClInclude Include="C_TEXTS.h" />
     <ClInclude Include="Prog.h" />
     <ClInclude Include="TXT_Body.h" />
