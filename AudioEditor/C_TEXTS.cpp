@@ -39,6 +39,14 @@ C_TEXTS::C_TEXTS()
 
 }
 
+C_TEXTS::C_TEXTS(TXT_Handle::LANGUAGES language)
+{
+
+	TEXTS_Update = std::make_unique<TXT_Handle>(language);
+
+	TEXTS_Update->Load_Texts_Matrix(TEXTS);
+}
+
 bool C_TEXTS::langugeUpdate(int language)
 {
 	switch(language)
@@ -64,11 +72,22 @@ bool C_TEXTS::langugeUpdate(int language)
 	return false;
 }
 
+void C_TEXTS::langugeUpdate(TXT_Handle::LANGUAGES language)
+{
+	TEXTS_Update = std::make_unique<TXT_Handle>(language);
+	TEXTS_Update->Load_Texts_Matrix(TEXTS);
+}
+
 bool C_TEXTS::writeText(TEXT_ID text)
 {
 	std::wcout << TEXTS[(int)text] << std::endl;
 	return true;
 
+}
+
+std::wstring C_TEXTS::getText(TEXT_ID text)
+{
+	return  TEXTS[(int)text];
 }
 
 

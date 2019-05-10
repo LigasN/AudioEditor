@@ -9,6 +9,16 @@
 #include <vector>
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+///	Class C_TEXTS
+///
+/// Aim: Controls all of texts in program. Change language and read txt files with interface texts 
+///
+/// Description: Uses Handle-Body design patterned classes TXT_...(part of Handle-Body)
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 class C_TEXTS
 {
 private:
@@ -49,52 +59,9 @@ public:
 	enum class TEXT_ID
 	{
 		Error,
-		Greeting,
-		Choosing_options,
-		Menu_options,
-		Thanks_fP,
-		Nick,
-		Byron_name,
-		Location_Name,
-		WhatNow_choice1,
-		Enum_Dance,
-		LostGame,
-		WinFight,
-		Hitting,
-		Location_Name1,
-		Location_Name2,
-		Location_Name3,
-		Location_Name4,
-		nothing_there,
-		Road,
-		Road1,
-		Road2,
-		Road3,
-		Road4,
-		Road5,
-		Road6,
-		First_moments_ending,
-		First_moments_traveling,
-		empty,
-		added_trove,
-		overloadedTrove,
-		overloadedTrove2,
-		NotImplementedException,
-		staty_show,
-		show_HP,
-		show_strength,
-		show_stamina,
-		show_respect,
-		show_persuasion_power,
-		show_backpack_capacity,
-		show_your_troves,
-		show_item_type,
-		show_item_type_sword,
-		show_item_DMG,
-		show_item_amount,
-		show_item_strength,
-		show_item_value,
-		show_item_maxAmount
+		Settings,
+		Upload_Sound,
+		Zuzanka_TM
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,17 +73,46 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
+	/// Parametrical constructor in C_TEXTS class
+	///
+	/// Aim: Set all parametrs as wanted. Set argument as default language 
+	///
+	/// Arguments:	-TXT_Handle::LANGUAGES 			-language of texts
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	C_TEXTS(TXT_Handle::LANGUAGES language);
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
 	/// Function in C_TEXTS class
 	///
-	/// Aim: Update language of C_TEXTS class
+	/// Aim: Update language of C_TEXTS class by int choice on console
 	///
 	/// Way: -Use Handle-Body design pattern which handle files with texts in different languages
 	///	 	 -Update texts in TEXTS tab
+	///
+	/// Arguments:	-int			-choice from console
 	///
 	/// Returns: Boolean true if success, false if not
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	bool langugeUpdate(int language);
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// Function in C_TEXTS class
+	///
+	/// Aim: Update language of C_TEXTS class by TXT_Handle LANGUAGES enum
+	///
+	/// Way: -Use Handle-Body design pattern which handle files with texts in different languages
+	///	 	 -Update texts in TEXTS tab
+	///
+	/// Arguments:	-TXT_Handle::LANGUAGES language			-language to update to
+	///
+	/// Returns: void
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	void langugeUpdate(TXT_Handle::LANGUAGES language);
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
@@ -130,5 +126,16 @@ public:
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	bool writeText(TEXT_ID text);
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// Function in C_TEXTS class
+	///
+	/// Aim: Return requested text in wstring
+	///
+	/// Returns: std::wstring
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	std::wstring getText(TEXT_ID text);
 
 };

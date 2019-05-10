@@ -3,7 +3,6 @@
 
 void TXT_Body_French::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 {
-
 	newText.clear();
 	assert(newText.empty());
 
@@ -28,5 +27,6 @@ void TXT_Body_French::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 		}
 
 	}
+	newText.push_back(wholeLine);
 	file.close();
 }

@@ -27,5 +27,6 @@ void TXT_Body_Italian::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 		}
 
 	}
+	newText.push_back(wholeLine);
 	file.close();
 }

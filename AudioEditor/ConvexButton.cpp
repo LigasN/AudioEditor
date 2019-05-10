@@ -30,7 +30,7 @@ ConvexButton::ConvexButton(sf::Vector2f position, sf::Color color, float rotatio
 {
 	this->shape.setFillColor(color);
 	shape.setPointCount(points.size());
-	for (int i = 0; i < points.size(); i++)
+	for (unsigned int i = 0; i < points.size(); i++)
 	{
 		shape.setPoint(i, points[i]);
 	}

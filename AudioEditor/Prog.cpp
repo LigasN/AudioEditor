@@ -1,7 +1,7 @@
 #include "Prog.h"
 #include <iostream>  //to delete after tests
 
-Prog::Prog() : buttons()
+Prog::Prog() : buttons(), display(sf::Vector2f(440.f,132.f), sf::Vector2f(313.f, 148.f))
 {
 	Exit = 0;
 }
@@ -39,7 +39,18 @@ bool Prog::Update(sf::RenderWindow& window)
 			window.close();
 			return EXIT_SUCCESS;
 		}
-
+		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::A))
+		{
+			display.setText(C_TEXTS::TEXT_ID::Error);
+		}
+		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::B))
+		{
+			display.setText(C_TEXTS::TEXT_ID::Upload_Sound);
+		}
+		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z))
+		{
+			display.setText(C_TEXTS::TEXT_ID::Zuzanka_TM);
+		}
 	}
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -51,6 +62,7 @@ bool Prog::Update(sf::RenderWindow& window)
 	window.clear();
 	window.draw(backgoundSprite);
 	window.draw(buttons);
+	window.draw(display);
 	window.display();
 	return EXIT_SUCCESS;
 }
