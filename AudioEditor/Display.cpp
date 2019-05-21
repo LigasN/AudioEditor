@@ -34,7 +34,7 @@ TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEX
 }
 
 
-Display::Display(const sf::Vector2f & size, sf::Vector2f position) : display(&sf::RectangleShape(size)), font(),
+Display::Display(const sf::Vector2f size, sf::Vector2f position) : display(&sf::RectangleShape(size)), font(),
 TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 40)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));
@@ -103,7 +103,7 @@ text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 20)
 	display.setFillColor(sf::Color::Transparent);
 }
 
-Display::Display(const sf::Vector2f & size, sf::Vector2f position) : display(sf::RectangleShape(size)), font(),
+Display::Display(const sf::Vector2f size, sf::Vector2f position) : display(sf::RectangleShape(size)), font(),
 TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 40)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));

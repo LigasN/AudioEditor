@@ -40,7 +40,7 @@ private:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Variable  in RectangleButton class
+	/// Variable in RectangleButton class
 	///
 	/// Aim: Stores information about status of button. If true it is pushed, if not it is not.
 	///

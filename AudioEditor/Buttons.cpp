@@ -15,10 +15,29 @@ void Buttons::draw(sf::RenderTarget & target, sf::RenderStates state) const
 	target.draw(DownArrowButtonArea, state);
 }
 
-Buttons::Buttons() : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499.f), color, 0.f, false),
-	SecondEffectButton(effectButtonSize, sf::Vector2f(462.f, 499.f), color, 0.f, false),
-	ThirdEffectButton(effectButtonSize, sf::Vector2f(743.f, 499.f), color, 0.f, false),
-	FourthEffectButton(effectButtonSize, sf::Vector2f(1024.f, 499.f), color, 0.f, false)
+//Buttons::Buttons() : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499.f), color, 0.f, false),
+//	SecondEffectButton(effectButtonSize, sf::Vector2f(462.f, 499.f), color, 0.f, false),
+//	ThirdEffectButton(effectButtonSize, sf::Vector2f(743.f, 499.f), color, 0.f, false),
+//	FourthEffectButton(effectButtonSize, sf::Vector2f(1024.f, 499.f), color, 0.f, false)
+//{
+//	PlayButtonArea = ConvexButton(sf::Vector2f(656.5f, 117.f), color, 0.f, ellipticalPoints, false);
+//	StopButtonArea = ConvexButton(sf::Vector2f(656.5f, 293.f), color, 0.f, ellipticalPoints, false);
+//	CleanButtonArea = ConvexButton(sf::Vector2f(656.5f, 205.f), color, 0.f, ellipticalPoints, false);
+//	LeftArrowButtonArea = ConvexButton(sf::Vector2f(896.f, 101.5f), color, 0.f, triangularPoints, false);
+//	RightArrowButtonArea = ConvexButton(sf::Vector2f(1037.f, 221.5f), color, 180.f, triangularPoints, false);
+//	UpArrowButtonArea = ConvexButton(sf::Vector2f(1027.f, 91.f), color, 90.f, triangularPoints, false);
+//	DownArrowButtonArea = ConvexButton(sf::Vector2f(906.f, 232.5f), color, -90.f, triangularPoints, false);
+//}
+
+Buttons::~Buttons()
+{
+}
+
+Buttons::Buttons(const std::shared_ptr <sf::Window> relativeTo) : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499.f), color, 0.f, false),
+SecondEffectButton(effectButtonSize, sf::Vector2f(462.f, 499.f), color, 0.f, false),
+ThirdEffectButton(effectButtonSize, sf::Vector2f(743.f, 499.f), color, 0.f, false),
+FourthEffectButton(effectButtonSize, sf::Vector2f(1024.f, 499.f), color, 0.f, false),
+relativeTo(relativeTo)
 {
 	PlayButtonArea = ConvexButton(sf::Vector2f(656.5f, 117.f), color, 0.f, ellipticalPoints, false);
 	StopButtonArea = ConvexButton(sf::Vector2f(656.5f, 293.f), color, 0.f, ellipticalPoints, false);
@@ -29,13 +48,9 @@ Buttons::Buttons() : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499
 	DownArrowButtonArea = ConvexButton(sf::Vector2f(906.f, 232.5f), color, -90.f, triangularPoints, false);
 }
 
-Buttons::~Buttons()
+Buttons::MousePositions Buttons::ButtonUpdate()
 {
-}
-
-Buttons::MousePositions Buttons::ButtonUpdate(const sf::Window & relativeTo)
-{
-	sf::Vector2f position = (sf::Vector2f)sf::Mouse::getPosition(relativeTo);
+	sf::Vector2f position = (sf::Vector2f)sf::Mouse::getPosition(*relativeTo);
 
 	if (FirstEffectButton.OnTarget(position))
 	{

@@ -61,7 +61,12 @@ public:
 		Error,
 		Settings,
 		Upload_Sound,
-		Zuzanka_TM
+		Zuzanka_TM,															//UPDATE TEXT FILE ABOUT NECESSARY TEXTS
+		SavingQuestion,
+		TextSaved,
+		Playing,
+		PlayingClean,
+		Stopped
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
