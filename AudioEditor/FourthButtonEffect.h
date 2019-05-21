@@ -5,7 +5,7 @@
 class FourthButtonEffect : public AudioEditorState
 {
 public:
-	FourthButtonEffect();
+	FourthButtonEffect(const std::shared_ptr <Display> display);
 	~FourthButtonEffect();
 	States getStateName();
 

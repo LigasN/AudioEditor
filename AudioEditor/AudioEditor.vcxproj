@@ -153,7 +153,6 @@
     <ClCompile Include="AudioEditorManager.cpp" />
     <ClCompile Include="SecondButtonEffect.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
-    <ClCompile Include="SoundStorage.cpp" />
     <ClCompile Include="ThirdButtonEffect.cpp" />
     <ClCompile Include="TXT_Body.cpp" />
     <ClCompile Include="TXT_Body_English.cpp" />
@@ -183,7 +182,6 @@
     <ClInclude Include="AudioEditorManager.h" />
     <ClInclude Include="SecondButtonEffect.h" />
     <ClInclude Include="SoundEffect.h" />
-    <ClInclude Include="SoundStorage.h" />
     <ClInclude Include="ThirdButtonEffect.h" />
     <ClInclude Include="TXT_Body.h" />
     <ClInclude Include="TXT_Body_English.h" />

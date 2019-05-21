@@ -5,7 +5,7 @@
 class NoneEffectState : public AudioEditorState
 {
 public:
-	NoneEffectState();
+	NoneEffectState(const std::shared_ptr <Display> display);
 	~NoneEffectState();
 	States getStateName();
 };

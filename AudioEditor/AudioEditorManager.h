@@ -3,7 +3,6 @@
 #include "Buttons.h"
 #include "Display.h"
 #include "AudioEditorState.h"
-#include "SoundStorage.h"
 #include <memory>
 #include "NoneEffectState.h"
 #include "FirstButtonEffect.h"
@@ -29,6 +28,5 @@ public:
 	AudioEditorManager(const std::shared_ptr <Display> display, const std::shared_ptr <Buttons> buttons);
 	~AudioEditorManager();
 	bool updateState();
-	bool updateSound(const std::shared_ptr <SoundStorage> & sound );
 };
 

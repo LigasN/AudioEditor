@@ -5,7 +5,7 @@
 class SecondButtonEffect : public AudioEditorState
 {
 public:
-	SecondButtonEffect();
+	SecondButtonEffect(const std::shared_ptr <Display> display);
 	~SecondButtonEffect();
 	States getStateName();
 };

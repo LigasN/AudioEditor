@@ -2,7 +2,7 @@
 
 
 
-NoneEffectState::NoneEffectState()
+NoneEffectState::NoneEffectState(const std::shared_ptr <Display> display) : AudioEditorState(display, States::NoneEffectState)
 {
 }
 

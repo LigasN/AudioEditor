@@ -5,7 +5,7 @@
 class FirstButtonEffect : public AudioEditorState
 {
 public:
-	FirstButtonEffect();
+	FirstButtonEffect(const std::shared_ptr <Display> display);
 	~FirstButtonEffect();
 	States getStateName();
 };

@@ -31,7 +31,6 @@ bool AudioEditorManager::updateState()
 
 		case AudioEditorState::States::Player:
 
-			display->setText(C_TEXTS::TEXT_ID::Playing);
 			audioPlayer->Play();
 			break;
 
@@ -57,7 +56,6 @@ bool AudioEditorManager::updateState()
 		case AudioEditorState::States::Player:
 
 			audioPlayer->Clean();
-			display->setText(C_TEXTS::TEXT_ID::PlayingClean);
 			break;
 
 		default:
@@ -84,18 +82,15 @@ bool AudioEditorManager::updateState()
 			if (audioPlayer->GetStatus())
 			{
 				audioPlayer->Stop();
-				display->setText(C_TEXTS::TEXT_ID::Stopped);					// do przeniesienia dp stanu JAK BEDED PISAL DEFINICJE FUNCKJI
 			}
 
 			else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
 			{
-				display->setText(C_TEXTS::TEXT_ID::SavingQuestion);
 				audioPlayer->SetSavingState();
 			}
 
 			else if (!audioPlayer->GetStatus() && audioPlayer->GetSavingState())
 			{
-				display->setText(C_TEXTS::TEXT_ID::TextSaved);
 				audioPlayer->Save();
 				audioPlayer->ResetSavingState();
 			}
@@ -316,11 +311,4 @@ bool AudioEditorManager::updateState()
 
 
 
-}
-
-bool AudioEditorManager::updateSound(const std::shared_ptr <SoundStorage> & sound)				//TU ZACZNIJ
-{
-	if (currentState->UpdateSound(sound))
-		return true;
-	return false;
 }

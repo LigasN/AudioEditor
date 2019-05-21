@@ -2,7 +2,7 @@
 
 
 
-FirstButtonEffect::FirstButtonEffect() : name(States::FirstButtonEffect)
+FirstButtonEffect::FirstButtonEffect(const std::shared_ptr <Display> display) : AudioEditorState(display, States::FirstButtonEffect)
 {
 }
 

@@ -1,5 +1,5 @@
 #include "SoundEffect.h"
-
+#include <vector>
 
 
 SoundEffect::SoundEffect()
@@ -11,8 +11,9 @@ SoundEffect::~SoundEffect()
 {
 }
 
-bool SoundEffect::updateSound()
+sf::SoundBuffer SoundEffect::remakeSound(sf::SoundBuffer & sound)
 {
-	return false;
+	
+	return sound;
 }
 

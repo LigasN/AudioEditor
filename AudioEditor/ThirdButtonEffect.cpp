@@ -2,7 +2,7 @@
 
 
 
-ThirdButtonEffect::ThirdButtonEffect()
+ThirdButtonEffect::ThirdButtonEffect(const std::shared_ptr <Display> display) : AudioEditorState(display, States::ThirdButtonEffect)
 {
 }
 
