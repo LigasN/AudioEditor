@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SoundEffect.h"
+#include "FFT_IFFT.h"
 
 class WahWahSoundEffect : public SoundEffect
 {
@@ -21,6 +22,6 @@ public:
 
 private:
 
-	std::vector <float>  makeEffect();			//funcja zmieniana przez design pattern strategy
+	void  makeEffect(std::vector <sf::Int16> & soundSample, unsigned int sampleRate);			//funcja zmieniana przez design pattern strategy
 };
 

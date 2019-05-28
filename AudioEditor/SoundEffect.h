@@ -2,12 +2,14 @@
 
 #include <vector>
 #include "SFML/Audio.hpp"
+#include <assert.h>
+#include <math.h>
 
 class SoundEffect
 {
 private:
 	
-	virtual std::vector <float> makeEffect() = 0; //przylad funkcja uzywana wewnetrznie zeby ostatecznie przekazac efekt do remakeSound()
+	virtual void makeEffect(std::vector <sf::Int16> & soundSamples) = 0; //przylad funkcja uzywana wewnetrznie zeby ostatecznie przekazac efekt do remakeSound()
 
 public:
 
