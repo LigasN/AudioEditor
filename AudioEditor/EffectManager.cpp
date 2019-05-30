@@ -33,7 +33,7 @@ bool EffectManager::setEffect(Effects effectName)
 
 	case Effects::Wah_wah:
 
-		this->effect = std::make_shared<WahWahSoundEffect>();
+		this->effect = std::make_shared<TremoloSoundEffect>();
 		break;
 	}
 }

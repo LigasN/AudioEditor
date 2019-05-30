@@ -1,6 +1,6 @@
 #include "DelaySoundEffect.h"
 
-DelaySoundEffect::DelaySoundEffect()
+DelaySoundEffect::DelaySoundEffect() : delayLevelPerEcho(1), delayTime(1), pitchChangeEffect(1.5), pitchChangePerEcho(1.5), numberOfEchoes(5)
 {
 }
 

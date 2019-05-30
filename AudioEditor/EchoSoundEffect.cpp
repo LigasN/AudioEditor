@@ -1,6 +1,6 @@
 #include "EchoSoundEffect.h"
 
-EchoSoundEffect::EchoSoundEffect()
+EchoSoundEffect::EchoSoundEffect() : delayTime(3),  decayFactor(1)
 {
 }
 

@@ -1,7 +1,7 @@
 #include "DistortionSoundEffect.h"
 
 
-DistortionSoundEffect::DistortionSoundEffect()
+DistortionSoundEffect::DistortionSoundEffect() : clippingLevel(-10), drive(10), makeUpGain(10)
 {
 }
 
@@ -11,9 +11,9 @@ DistortionSoundEffect::~DistortionSoundEffect()
 
 void DistortionSoundEffect::makeEffect(std::vector <sf::Int16> & soundSamples, unsigned int sampleRate)
 {
-	assert(clippingLevel < 0 || clippingLevel > -100);
-	assert(drive > 0 || drive < 100);
-	assert(makeUpGain > 0 || makeUpGain < 100);
+	assert(clippingLevel < 0 && clippingLevel > -100);
+	assert(drive > 0 && drive < 100);
+	assert(makeUpGain > 0 && makeUpGain < 100);
 
 	int cutOffLevel{};
 

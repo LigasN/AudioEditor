@@ -160,7 +160,7 @@
     <ClCompile Include="TXT_Body_Italian.cpp" />
     <ClCompile Include="TXT_Body_Polish.cpp" />
     <ClCompile Include="TXT_Handle.cpp" />
-    <ClCompile Include="WahWahSoundEffect.cpp" />
+    <ClCompile Include="TremoloSoundEffect.cpp" />
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,7 +189,7 @@
     <ClInclude Include="TXT_Body_Italian.h" />
     <ClInclude Include="TXT_Body_Polish.h" />
     <ClInclude Include="TXT_Handle.h" />
-    <ClInclude Include="WahWahSoundEffect.h" />
+    <ClInclude Include="TremoloSoundEffect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

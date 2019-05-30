@@ -17,8 +17,9 @@ public:
 	~DistortionSoundEffect();
 
 private:
-	int clippingLevel{};
-	int drive{};
-	int makeUpGain{};
+	int clippingLevel;
+	int drive;
+	int makeUpGain;
+
 	void makeEffect(std::vector <sf::Int16> & soundSamples, unsigned int sampleRate);			//funcja zmieniana przez design pattern strategy
 };
