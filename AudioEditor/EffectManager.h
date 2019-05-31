@@ -1,32 +1,55 @@
 #pragma once
 
+#ifndef EFFECTMANAGER_H
+#define EFFECTMANAGER_H
+
+
 #include "SoundEffect.h"
+#include "Display.h"
 #include <memory>
 #include "DelaySoundEffect.h"
 #include "DistortionSoundEffect.h"
 #include "EchoSoundEffect.h"
-#include "WahWahSoundEffect.h"
+#include "TremoloSoundEffect.h"
 #include "SFML/Audio.hpp"
 
-class EffectManager
+namespace NL
 {
-private:
-	std::shared_ptr <SoundEffect> effect;
-
-public:
-	EffectManager();
-	~EffectManager();
-
-	enum class Effects
+	class EffectManager
 	{
-		Distortion,
-		Delay,
-		Wah_wah,
-		Echo
+	private:
+		std::shared_ptr <SoundEffect> effect;
+		std::shared_ptr <DelaySoundEffect> delaySoundEffect;
+		std::shared_ptr <DistortionSoundEffect> distortionSoundEffect;
+		std::shared_ptr <EchoSoundEffect> echoSoundEffect;
+		std::shared_ptr <TremoloSoundEffect> tremoloSoundEffect;
+
+
+	public:
+		EffectManager();
+		~EffectManager();
+
+		enum class Effects
+		{
+			Distortion,
+			Delay,
+			Tremolo,
+			Echo
+		};
+
+		void setEffect(Effects effectName);
+
+		sf::SoundBuffer remakeSound(sf::SoundBuffer & sound);
+
+		virtual void ParamDisplay(const std::shared_ptr <Display> & display) = 0;
+
+		void NextParameterSettings();
+		void PreviousParameterSettings();
+		void IncreaseParameter();
+		void DecreaseParameter();
+		void ChangeEffectStatus();
+		unsigned int GetParameterOnDisplay();
+
 	};
-
-	bool setEffect(Effects effectName);
-
-	sf::SoundBuffer remakeSound(sf::SoundBuffer & sound);
-
-};
+}
+#endif // !EFFECTMANAGER_H

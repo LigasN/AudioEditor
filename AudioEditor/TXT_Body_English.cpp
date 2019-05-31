@@ -1,32 +1,40 @@
+
+#ifndef TXT_BODY_ENGLISH_CPP
+#define TXT_BODY_ENGLISH_CPP
+
 #include "TXT_Body_English.h"
 #include <assert.h>
 
-void TXT_Body_English::Load_Texts_Matrix(std::vector <std::wstring> &newText)
+namespace NL
 {
-	newText.clear();
-	assert(newText.empty());
-
-	std::wifstream file;
-	file.open("Texts_English.txt", std::ios::in);
-
-	std::wstring partLine{};
-	std::wstring wholeLine{};
-	int i{};
-	while (std::getline(file, partLine))
+	void TXT_Body_English::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 	{
+		newText.clear();
+		assert(newText.empty());
 
-		if (partLine.empty()) {
-			wholeLine += L"\n";
-			newText.push_back(wholeLine);
-			wholeLine.clear();
-			assert(wholeLine.empty());
-		}
-		else
+		std::wifstream file;
+		file.open("Texts_English.txt", std::ios::in);
+
+		std::wstring partLine{};
+		std::wstring wholeLine{};
+		int i{};
+		while (std::getline(file, partLine))
 		{
-			wholeLine += partLine + L"\n";
-		}
 
+			if (partLine.empty()) {
+				wholeLine += L"\n";
+				newText.push_back(wholeLine);
+				wholeLine.clear();
+				assert(wholeLine.empty());
+			}
+			else
+			{
+				wholeLine += partLine + L"\n";
+			}
+
+		}
+		newText.push_back(wholeLine);
+		file.close();
 	}
-	newText.push_back(wholeLine);
-	file.close();
 }
+#endif // !TXT_BODY_ENGLISH_CPP

@@ -24,9 +24,6 @@
     <ClCompile Include="C_TEXTS.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="TXT_Body.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="TXT_Body_English.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>

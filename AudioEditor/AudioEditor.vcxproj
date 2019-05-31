@@ -154,7 +154,6 @@
     <ClCompile Include="SecondButtonEffect.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="ThirdButtonEffect.cpp" />
-    <ClCompile Include="TXT_Body.cpp" />
     <ClCompile Include="TXT_Body_English.cpp" />
     <ClCompile Include="TXT_Body_French.cpp" />
     <ClCompile Include="TXT_Body_Italian.cpp" />

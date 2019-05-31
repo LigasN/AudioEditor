@@ -1,21 +1,38 @@
 #pragma once
 
+#ifndef SOUNDEFFECT_H
+#define SOUNDEFFECT_H
+
 #include <vector>
 #include "SFML/Audio.hpp"
 #include <assert.h>
 #include <math.h>
 
-class SoundEffect
+namespace NL
 {
-private:
-	
-	virtual void makeEffect(std::vector <sf::Int16> & soundSamples) = 0; //przylad funkcja uzywana wewnetrznie zeby ostatecznie przekazac efekt do remakeSound()
+	class SoundEffect
+	{
+	private:
 
-public:
+		virtual void makeEffect(std::vector <sf::Int16> & soundSamples) = 0; //przylad funkcja uzywana wewnetrznie zeby ostatecznie przekazac efekt do remakeSound()
 
-	SoundEffect();
-	~SoundEffect();
+	protected:
+		unsigned int parameterOnDisplay;
+		bool effectStatus;
 
-	sf::SoundBuffer remakeSound(sf::SoundBuffer & sound);
-};
+	public:
 
+		SoundEffect();
+		~SoundEffect();
+
+		sf::SoundBuffer remakeSound(sf::SoundBuffer & sound);
+
+		virtual void NextParameterSettings();
+		virtual void PreviousParameterSettings();
+		virtual void IncreaseParameter() = 0;
+		virtual void DecreaseParameter() = 0;
+		virtual void ChangeEffectStatus();
+		virtual unsigned int GetParameterOnDisplay();
+	};
+}
+#endif // !SOUNDEFFECT_H

@@ -1,12 +1,19 @@
 #pragma once
 
+#ifndef NONEEFFECTSTATE_H
+#define NONEEFFECTSTATE_H
+
 #include "AudioEditorState.h"
 
-class NoneEffectState : public AudioEditorState
+namespace NL
 {
-public:
-	NoneEffectState(const std::shared_ptr <Display> display);
-	~NoneEffectState();
-	States getStateName();
-};
+	class NoneEffectState : public AudioEditorState
+	{
+	public:
+		NoneEffectState(const std::shared_ptr <Display> & display);
+		~NoneEffectState();
+		virtual States getStateName() override;
+	};
+}
 
+#endif // !NONEEFFECTSTATE_H

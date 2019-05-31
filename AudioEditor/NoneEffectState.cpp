@@ -1,17 +1,23 @@
+
+#ifndef NONEEFFECTSTATE_CPP
+#define NONEEFFECTSTATE_CPP
+
 #include "NoneEffectState.h"
 
-
-
-NoneEffectState::NoneEffectState(const std::shared_ptr <Display> display) : AudioEditorState(display, States::NoneEffectState)
+namespace NL
 {
-}
+	NoneEffectState::NoneEffectState(const std::shared_ptr <Display> & display) : AudioEditorState(display)
+	{
+	}
 
 
-NoneEffectState::~NoneEffectState()
-{
-}
+	NoneEffectState::~NoneEffectState()
+	{
+	}
 
-AudioEditorState::States NoneEffectState::getStateName()
-{
-	return name;
+	AudioEditorState::States NoneEffectState::getStateName()
+	{
+		return AudioEditorState::States::NoneEffectState;
+	}
 }
+#endif // !NONEEFFECTSTATE_CPP

@@ -1,44 +1,80 @@
+
+#ifndef EFFECTMANAGER_CPP
+#define EFFECTMANAGER_CPP
+
 #include "EffectManager.h"
 
-
-
-EffectManager::EffectManager()
+namespace NL
 {
-	effect = nullptr;
-}
 
-
-EffectManager::~EffectManager()
-{
-}
-
-bool EffectManager::setEffect(Effects effectName)
-{
-	switch (effectName)
+	EffectManager::EffectManager() : delaySoundEffect(), distortionSoundEffect(), echoSoundEffect(), tremoloSoundEffect(), effect(delaySoundEffect)
 	{
-	case Effects::Distortion:
+	}
 
-		this->effect = std::make_shared<DistortionSoundEffect>();
-		break;
 
-	case Effects::Delay:
+	EffectManager::~EffectManager()
+	{
+	}
 
-		this->effect = std::make_shared<DelaySoundEffect>();
-		break;
+	void EffectManager::setEffect(Effects effectName)
+	{
+		switch (effectName)
+		{
+		case Effects::Distortion:
 
-	case Effects::Echo:
+			this->effect = distortionSoundEffect;
+			break;
 
-		this->effect = std::make_shared<EchoSoundEffect>();
-		break;
+		case Effects::Delay:
 
-	case Effects::Wah_wah:
+			this->effect = delaySoundEffect;
+			break;
 
-		this->effect = std::make_shared<TremoloSoundEffect>();
-		break;
+		case Effects::Echo:
+
+			this->effect = echoSoundEffect;
+			break;
+
+		case Effects::Tremolo:
+
+			this->effect = tremoloSoundEffect;
+			break;
+		}
+	}
+
+	sf::SoundBuffer EffectManager::remakeSound(sf::SoundBuffer & sound)
+	{
+		return effect->remakeSound(sound);
+	}
+
+	void EffectManager::NextParameterSettings()
+	{
+		effect->NextParameterSettings();
+	}
+
+	void EffectManager::PreviousParameterSettings()
+	{
+		effect->PreviousParameterSettings();
+	}
+
+	void EffectManager::IncreaseParameter()
+	{
+		effect->IncreaseParameter();
+	}
+
+	void EffectManager::DecreaseParameter()
+	{
+		effect->DecreaseParameter();
+	}
+
+	void EffectManager::ChangeEffectStatus()
+	{
+		effect->ChangeEffectStatus();
+	}
+
+	unsigned int EffectManager::GetParameterOnDisplay()
+	{
+		return effect->GetParameterOnDisplay();
 	}
 }
-
-sf::SoundBuffer EffectManager::remakeSound(sf::SoundBuffer & sound)
-{
-	return effect->remakeSound(sound);
-}
+#endif // !EFFECTMANAGER_CPP

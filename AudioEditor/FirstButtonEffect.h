@@ -1,12 +1,20 @@
 #pragma once
 
+#ifndef FIRSTBUTTONEFFECT_H
+#define FIRSTBUTTONEFFECT_H
+
 #include "AudioEditorState.h"
 
-class FirstButtonEffect : public AudioEditorState
+namespace NL
 {
-public:
-	FirstButtonEffect(const std::shared_ptr <Display> display);
-	~FirstButtonEffect();
-	States getStateName();
-};
 
+	class FirstButtonEffect : public AudioEditorState
+	{
+	public:
+		FirstButtonEffect(const std::shared_ptr <Display> & display);
+		~FirstButtonEffect();
+		virtual States getStateName() override;
+		std::shared_ptr <EffectManager> & getEffectManager();
+	};
+}
+#endif // !FIRSTBUTTONEFFECT_H

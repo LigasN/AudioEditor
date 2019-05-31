@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef AUDIOEDITORMANAGER_H
+#define AUDIOEDITORMANAGER_H
+
 #include "Buttons.h"
 #include "Display.h"
 #include "AudioEditorState.h"
@@ -9,24 +12,29 @@
 #include "SecondButtonEffect.h"
 #include "ThirdButtonEffect.h"
 #include "FourthButtonEffect.h"
+#include "AudioPlayer.h"
 #include <assert.h>
 #include "C_TEXTS.h"
 
-class AudioEditorManager
+namespace NL
 {
-private:
-	std::shared_ptr <AudioEditorState> currentState;
-	std::shared_ptr <FirstButtonEffect> firstButtonEffect;
-	std::shared_ptr <SecondButtonEffect> secondButtonEffect;
-	std::shared_ptr <ThirdButtonEffect> thirdButtonEffect;
-	std::shared_ptr <FourthButtonEffect> fourthButtonEffect;
-	std::shared_ptr <AudioPlayer> audioPlayer;
-	const std::shared_ptr < Display > display;
-	const std::shared_ptr < Buttons > buttons;
+	class AudioEditorManager
+	{
+	private:
+		std::shared_ptr <AudioEditorState> currentState;
+		const std::shared_ptr <FirstButtonEffect> firstButtonEffect;
+		const std::shared_ptr <SecondButtonEffect> secondButtonEffect;
+		const std::shared_ptr <ThirdButtonEffect> thirdButtonEffect;
+		const std::shared_ptr <FourthButtonEffect> fourthButtonEffect;
+		const std::shared_ptr <AudioPlayer> audioPlayer;
+		const std::shared_ptr < Display > display;
+		const std::shared_ptr < Buttons > buttons;
 
-public:
-	AudioEditorManager(const std::shared_ptr <Display> display, const std::shared_ptr <Buttons> buttons);
-	~AudioEditorManager();
-	bool updateState();
-};
+	public:
+		AudioEditorManager(const std::shared_ptr <Display> & display, const std::shared_ptr <Buttons> & buttons);
+		~AudioEditorManager();
+		bool updateState();
+	};
+}
 
+#endif
