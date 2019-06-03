@@ -3,9 +3,9 @@
 #ifndef AUDIOEDITORMANAGER_H
 #define AUDIOEDITORMANAGER_H
 
+#include "AudioEditorState.h"
 #include "Buttons.h"
 #include "Display.h"
-#include "AudioEditorState.h"
 #include <memory>
 #include "NoneEffectState.h"
 #include "FirstButtonEffect.h"

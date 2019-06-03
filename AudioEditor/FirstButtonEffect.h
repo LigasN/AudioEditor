@@ -14,7 +14,13 @@ namespace NL
 		FirstButtonEffect(const std::shared_ptr <Display> & display);
 		~FirstButtonEffect();
 		virtual States getStateName() override;
-		std::shared_ptr <EffectManager> & getEffectManager();
+		virtual const std::shared_ptr <EffectManager> & getEffectManager() override;
+		virtual void NextParameterSettings() override;
+		virtual void PreviousParameterSettings() override;
+		virtual void IncreaseParameter() override;
+		virtual void DecreaseParameter() override;
+		virtual void ChangeEffectStatus() override;
+		virtual void UpdateDisplay() override;
 	};
 }
 #endif // !FIRSTBUTTONEFFECT_H

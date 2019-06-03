@@ -39,7 +39,7 @@ namespace NL
 				currentState = audioPlayer;
 
 			case AudioEditorState::States::Player:
-				audioPlayer->UpdateEditedSound(firstButtonEffect, secondButtonEffect, thirdButtonEffect, fourthButtonEffect);
+				audioPlayer->UpdateEditedSound(firstButtonEffect->getEffectManager(), secondButtonEffect->getEffectManager(), thirdButtonEffect->getEffectManager(), fourthButtonEffect->getEffectManager());
 				audioPlayer->Play();
 				break;
 

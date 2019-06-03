@@ -22,6 +22,42 @@ namespace NL
 		return AudioEditorState::States::Player;
 	}
 
+	void AudioPlayer::NextParameterSettings()
+	{
+		assert("AudioPlayer trying cause NextParameterSettings");
+	}
+
+	void AudioPlayer::PreviousParameterSettings()
+	{
+		assert("AudioPlayer trying cause PreviousParameterSettings");
+	}
+
+	void AudioPlayer::IncreaseParameter()
+	{
+		assert("AudioPlayer trying cause IncreaseParameter");
+	}
+
+	void AudioPlayer::DecreaseParameter()
+	{
+		assert("AudioPlayer trying cause DecreaseParameter");
+	}
+
+	void AudioPlayer::ChangeEffectStatus()
+	{
+		assert("AudioPlayer trying cause ChangeEffectStatus");
+	}
+
+	void AudioPlayer::UpdateDisplay()
+	{
+		assert("AudioPlayer trying cause UpdateDisplay");
+	}
+
+	const std::shared_ptr<EffectManager>& AudioPlayer::getEffectManager()
+	{
+		assert("AudioPlayer trying cause getEffectManager");
+		return effectManager;
+	}
+
 	void AudioPlayer::Play()
 	{
 		display->setText(C_TEXTS::TEXT_ID::Playing);
@@ -103,17 +139,13 @@ namespace NL
 		editedSound = newEditedSound;
 	}
 
-	void AudioPlayer::UpdateEditedSound(const std::shared_ptr<FirstButtonEffect>& firstButtonEffect, const std::shared_ptr<SecondButtonEffect>& secondButtonEffect,
-		const std::shared_ptr<ThirdButtonEffect>& thirdButtonEffect, const std::shared_ptr<FourthButtonEffect>& fourthButtonEffect)
+	void AudioPlayer::UpdateEditedSound(const std::shared_ptr<EffectManager>& firstButtonManager, const std::shared_ptr<EffectManager>& secondButtonManager,
+		const std::shared_ptr<EffectManager>& thirdButtonManager, const std::shared_ptr<EffectManager>& fourthButtonManager)
 	{
-		std::shared_ptr<EffectManager> effectManager1(firstButtonEffect->getEffectManager());
-		effectManager1->remakeSound(editedSound);
-		std::shared_ptr<EffectManager> effectManager2(secondButtonEffect->getEffectManager());
-		effectManager2->remakeSound(editedSound);
-		std::shared_ptr<EffectManager> effectManager3(thirdButtonEffect->getEffectManager());
-		effectManager3->remakeSound(editedSound);
-		std::shared_ptr<EffectManager> effectManager4(fourthButtonEffect->getEffectManager());
-		effectManager4->remakeSound(editedSound);
+		firstButtonManager->remakeSound(editedSound);
+		secondButtonManager->remakeSound(editedSound);
+		thirdButtonManager->remakeSound(editedSound);
+		fourthButtonManager->remakeSound(editedSound);
 	}
 }
 #endif // !AUDIOPLAYER_CPP

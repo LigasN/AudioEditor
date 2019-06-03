@@ -15,6 +15,11 @@ namespace NL
 	{
 	}
 
+	AudioEditorState::States AudioEditorState::getStateName()
+	{
+		return States::BaseClass;
+	}
+
 	void AudioEditorState::NextParameterSettings()
 	{
 		effectManager->NextParameterSettings();

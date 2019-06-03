@@ -19,9 +19,40 @@ namespace NL
 	{
 		return AudioEditorState::States::SecondButtonEffect;
 	}
-	std::shared_ptr<EffectManager>& SecondButtonEffect::getEffectManager()
+
+	const std::shared_ptr<EffectManager>& SecondButtonEffect::getEffectManager()
 	{
 		return effectManager;
+	}
+
+	void SecondButtonEffect::NextParameterSettings()
+	{
+		effectManager->NextParameterSettings();
+	}
+
+	void SecondButtonEffect::PreviousParameterSettings()
+	{
+		effectManager->PreviousParameterSettings();
+	}
+
+	void SecondButtonEffect::IncreaseParameter()
+	{
+		effectManager->IncreaseParameter();
+	}
+
+	void SecondButtonEffect::DecreaseParameter()
+	{
+		effectManager->DecreaseParameter();
+	}
+
+	void SecondButtonEffect::ChangeEffectStatus()
+	{
+		effectManager->ChangeEffectStatus();
+	}
+
+	void SecondButtonEffect::UpdateDisplay()
+	{
+		effectManager->ParamDisplay(display);
 	}
 }
 #endif // !SECONDBUTTONEFFECT_CPP

@@ -17,6 +17,7 @@ namespace NL
 
 		enum class States
 		{
+			BaseClass,
 			NoneEffectState,
 			FirstButtonEffect,
 			SecondButtonEffect,
@@ -28,19 +29,19 @@ namespace NL
 	protected:
 
 		const std::shared_ptr <Display> display;
-		std::shared_ptr <EffectManager> effectManager;
+		const std::shared_ptr <EffectManager> effectManager;
 
 	public:
 		AudioEditorState(const std::shared_ptr <Display> & display);
 		~AudioEditorState();
-		virtual States getStateName() = 0;
-		void NextParameterSettings();
-		void PreviousParameterSettings();
-		void IncreaseParameter();
-		void DecreaseParameter();
-		void ChangeEffectStatus();
-		void UpdateDisplay();
-		const std::shared_ptr <EffectManager> & getEffectManager();
+		virtual States getStateName();
+		virtual void NextParameterSettings();
+		virtual void PreviousParameterSettings();
+		virtual void IncreaseParameter();
+		virtual void DecreaseParameter();
+		virtual void ChangeEffectStatus();
+		virtual void UpdateDisplay();
+		virtual const std::shared_ptr <EffectManager> & getEffectManager();
 	};
 }
 

@@ -18,11 +18,42 @@ namespace NL
 
 	AudioEditorState::States FourthButtonEffect::getStateName()
 	{
-		return AudioEditorState::States::FourthButtonEffect;
+		return AudioEditorState::States::SecondButtonEffect;
 	}
-	std::shared_ptr<EffectManager>& FourthButtonEffect::getEffectManager()
+
+	const std::shared_ptr<EffectManager>& FourthButtonEffect::getEffectManager()
 	{
 		return effectManager;
+	}
+
+	void FourthButtonEffect::NextParameterSettings()
+	{
+		effectManager->NextParameterSettings();
+	}
+
+	void FourthButtonEffect::PreviousParameterSettings()
+	{
+		effectManager->PreviousParameterSettings();
+	}
+
+	void FourthButtonEffect::IncreaseParameter()
+	{
+		effectManager->IncreaseParameter();
+	}
+
+	void FourthButtonEffect::DecreaseParameter()
+	{
+		effectManager->DecreaseParameter();
+	}
+
+	void FourthButtonEffect::ChangeEffectStatus()
+	{
+		effectManager->ChangeEffectStatus();
+	}
+
+	void FourthButtonEffect::UpdateDisplay()
+	{
+		effectManager->ParamDisplay(display);
 	}
 }
 #endif //!FOURTHBUTTONEFFECT_CPP

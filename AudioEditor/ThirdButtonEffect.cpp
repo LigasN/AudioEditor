@@ -17,12 +17,42 @@ namespace NL
 
 	AudioEditorState::States ThirdButtonEffect::getStateName()
 	{
-		return AudioEditorState::States::ThirdButtonEffect;
+		return AudioEditorState::States::SecondButtonEffect;
 	}
 
-	std::shared_ptr<EffectManager>& ThirdButtonEffect::getEffectManager()
+	const std::shared_ptr<EffectManager>& ThirdButtonEffect::getEffectManager()
 	{
 		return effectManager;
+	}
+
+	void ThirdButtonEffect::NextParameterSettings()
+	{
+		effectManager->NextParameterSettings();
+	}
+
+	void ThirdButtonEffect::PreviousParameterSettings()
+	{
+		effectManager->PreviousParameterSettings();
+	}
+
+	void ThirdButtonEffect::IncreaseParameter()
+	{
+		effectManager->IncreaseParameter();
+	}
+
+	void ThirdButtonEffect::DecreaseParameter()
+	{
+		effectManager->DecreaseParameter();
+	}
+
+	void ThirdButtonEffect::ChangeEffectStatus()
+	{
+		effectManager->ChangeEffectStatus();
+	}
+
+	void ThirdButtonEffect::UpdateDisplay()
+	{
+		effectManager->ParamDisplay(display);
 	}
 
 }

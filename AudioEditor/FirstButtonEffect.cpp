@@ -21,9 +21,39 @@ namespace NL
 		return AudioEditorState::States::FirstButtonEffect;
 	}
 
-	std::shared_ptr<EffectManager>& FirstButtonEffect::getEffectManager()
+	const std::shared_ptr<EffectManager>& FirstButtonEffect::getEffectManager()
 	{
 		return effectManager;
+	}
+
+	void FirstButtonEffect::NextParameterSettings()
+	{
+		effectManager->NextParameterSettings();
+	}
+
+	void FirstButtonEffect::PreviousParameterSettings()
+	{
+		effectManager->PreviousParameterSettings();
+	}
+
+	void FirstButtonEffect::IncreaseParameter()
+	{
+		effectManager->IncreaseParameter();
+	}
+
+	void FirstButtonEffect::DecreaseParameter()
+	{
+		effectManager->DecreaseParameter();
+	}
+
+	void FirstButtonEffect::ChangeEffectStatus()
+	{
+		effectManager->ChangeEffectStatus();
+	}
+
+	void FirstButtonEffect::UpdateDisplay()
+	{
+		effectManager->ParamDisplay(display);
 	}
 }
 #endif // !FIRSTBUTTONEFFECT_CPP
