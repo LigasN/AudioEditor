@@ -65,7 +65,6 @@ namespace NL
 			Error,
 			Settings,
 			Upload_Sound,
-			Zuzanka_TM,															//UPDATE TEXT FILE ABOUT NECESSARY TEXTS
 			SavingQuestion,
 			TextSaved,
 			Playing,
@@ -80,7 +79,6 @@ namespace NL
 			Delay_level_per_echo,
 			Delay_time,
 			Pitch_change_effect,
-			LQ_Pitch_Shift,
 			Pitch_change_per_echo,
 			Number_of_echoes,
 			Clipping_level,

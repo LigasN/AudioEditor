@@ -1,134 +1,64 @@
-TExty
+Nieoczekiwany blad
 
-TExty
+Ustawienia
 
-TExty
+Pobierz utwor
 
-TExty
+Zapisac? Tak - kliknij STOP
 
-TExty
+Zapisane
 
-TExty
+Utwor po edycji
 
-TExty
+Utwor przed edycja
 
-TExty
+Zatrzymane
 
-TExty
+Nie udalo sie zapisac pliku
 
-TExty
+Effect
 
-TExty
+Przester
 
-TExty
+Echo
 
-TExty
+Opoznienie
 
-TExty
+Tremolo
 
-TExty
+Opoznienie kolejnego echa
 
-TExty
+Czas opoznienia
 
-TExty
+Ton
 
-TExty
+Zmiana tonu na echo
 
-TExty
+Liczba ech
 
-TExty
+Poziom podciecia
 
-TExty
+Wzmocnienie wstepne
 
-TExty
+Wzmocnienie koncowe
 
-TExty
+Wspolczynnik rozpadania
 
-TExty
+Typ sygnalu
 
-TExty
+Faza startowa
 
-TExty
+Poziom wilgoci
 
-TExty
+czestotliwosc
 
-TExty
+sin
 
-TExty
+trojkatny
 
-TExty
+pila
 
-TExty
+odwrocona pila
 
-TExty
+prostokatny
 
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty
-
-TExty

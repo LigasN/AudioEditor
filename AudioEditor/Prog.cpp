@@ -57,7 +57,6 @@ namespace NL
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			buttons->ButtonUpdate();
 			audioEditorManager.updateState();
 				while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
 		}
