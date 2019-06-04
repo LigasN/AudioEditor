@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioEditorManager.cpp" />
     <ClCompile Include="AudioEditorState.cpp" />
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="ConvexButton.cpp" />
@@ -150,19 +151,20 @@
     <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="C_TEXTS.cpp" />
     <ClCompile Include="Prog.cpp" />
-    <ClCompile Include="AudioEditorManager.cpp" />
     <ClCompile Include="SecondButtonEffect.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="ThirdButtonEffect.cpp" />
+    <ClCompile Include="TremoloSoundEffect.cpp" />
+    <ClCompile Include="TXT_Body.cpp" />
     <ClCompile Include="TXT_Body_English.cpp" />
     <ClCompile Include="TXT_Body_French.cpp" />
     <ClCompile Include="TXT_Body_Italian.cpp" />
     <ClCompile Include="TXT_Body_Polish.cpp" />
     <ClCompile Include="TXT_Handle.cpp" />
-    <ClCompile Include="TremoloSoundEffect.cpp" />
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioEditorManager.h" />
     <ClInclude Include="AudioEditorState.h" />
     <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="ConvexButton.h" />
@@ -178,17 +180,16 @@
     <ClInclude Include="Buttons.h" />
     <ClInclude Include="C_TEXTS.h" />
     <ClInclude Include="Prog.h" />
-    <ClInclude Include="AudioEditorManager.h" />
     <ClInclude Include="SecondButtonEffect.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="ThirdButtonEffect.h" />
+    <ClInclude Include="TremoloSoundEffect.h" />
     <ClInclude Include="TXT_Body.h" />
     <ClInclude Include="TXT_Body_English.h" />
     <ClInclude Include="TXT_Body_French.h" />
     <ClInclude Include="TXT_Body_Italian.h" />
     <ClInclude Include="TXT_Body_Polish.h" />
     <ClInclude Include="TXT_Handle.h" />
-    <ClInclude Include="TremoloSoundEffect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

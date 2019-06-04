@@ -1,8 +1,4 @@
 #pragma once
-
-#ifndef TXT_BODY_ITALIAN_H
-#define TXT_BODY_ITALIAN_H
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///
 /// HEADERS
@@ -13,32 +9,27 @@
 #include <string>
 #include <vector>
 
-namespace NL
+///////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// TXT_Body_Italian class
+///
+/// Aim: Handle Body element with other TXT classes. Loads matrix of texts in Italian.
+///
+///////////////////////////////////////////////////////////////////////////////////////////////
+class TXT_Body_Italian : public TXT_Body
 {
+public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// TXT_Body_Italian class
+	/// Virtual override function in TXT_Body_Italian class
 	///
-	/// Aim: Handle Body element with other TXT classes. Loads matrix of texts in Italian.
+	/// Aim: Load matrix with text from file in proper language (Italian)
+	///
+	/// Arguments: std::vector <std::wstring> &
+	///
+	/// Returns: void
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class TXT_Body_Italian : public TXT_Body
-	{
-	public:
-
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		///
-		/// Virtual override function in TXT_Body_Italian class
-		///
-		/// Aim: Load matrix with text from file in proper language (Italian)
-		///
-		/// Arguments: std::vector <std::wstring> &
-		///
-		/// Returns: void
-		///
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		virtual void Load_Texts_Matrix(std::vector <std::wstring> &newText) override;
-	};
-}
-#endif // !TXT_BODY_ITALIAN_H
+	virtual void Load_Texts_Matrix(std::vector <std::wstring> &newText) override;
+};

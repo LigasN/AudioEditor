@@ -1,60 +1,65 @@
-
-#ifndef AUDIOEDITORSTATE_CPP
-#define AUDIOEDITORSTATE_CPP
-
 #include "AudioEditorState.h"
+#include <iostream>
 
-namespace NL
+AudioEditorState::AudioEditorState(): display(std::make_shared <Display> ()), effectManager(std::make_shared <EffectManager>())
 {
-
-	AudioEditorState::AudioEditorState(const std::shared_ptr <Display> & display) : display(display), effectManager()
-	{
-	}
-
-	AudioEditorState::~AudioEditorState()
-	{
-	}
-
-	AudioEditorState::States AudioEditorState::getStateName()
-	{
-		return States::BaseClass;
-	}
-
-	void AudioEditorState::NextParameterSettings()
-	{
-		effectManager->NextParameterSettings();
-	}
-
-	void AudioEditorState::PreviousParameterSettings()
-	{
-		effectManager->PreviousParameterSettings();
-	}
-
-	void AudioEditorState::IncreaseParameter()
-	{
-		effectManager->IncreaseParameter();
-	}
-
-	void AudioEditorState::DecreaseParameter()
-	{
-		effectManager->DecreaseParameter();
-	}
-
-	void AudioEditorState::ChangeEffectStatus()
-	{
-		effectManager->ChangeEffectStatus();
-	}
-
-	void AudioEditorState::UpdateDisplay()
-	{
-		effectManager->ParamDisplay(display);
-	}
-
-	const std::shared_ptr<EffectManager>& AudioEditorState::getEffectManager()
-	{
-		return effectManager;
-	}
-
 }
 
-#endif // !AUDIOEDITORSTATE_CPP
+AudioEditorState::AudioEditorState(const std::shared_ptr <Display> & display) : display(display), effectManager(std::make_shared <EffectManager> ())
+{
+}
+
+AudioEditorState::~AudioEditorState()
+{
+}
+
+AudioEditorState::States AudioEditorState::getStateName()
+{
+	return States::BaseClass;
+}
+
+void AudioEditorState::NextParameterSettings()
+{
+	std::cout << "effectManager->NextParameterSettings();\tAudioEditorState::NextParameterSettings() " << std::endl;
+	effectManager->NextParameterSettings();
+}
+
+void AudioEditorState::PreviousParameterSettings()
+{
+
+	std::cout << "effectManager->PreviousParameterSettings();\tAudioEditorState::PreviousParameterSettings() " << std::endl;
+	effectManager->PreviousParameterSettings();
+}
+
+void AudioEditorState::IncreaseParameter()
+{
+
+	std::cout << "effectManager->IncreaseParameter();\tAudioEditorState::IncreaseParameter() " << std::endl;
+	effectManager->IncreaseParameter();
+}
+
+void AudioEditorState::DecreaseParameter()
+{
+
+	std::cout << "effectManager->DecreaseParameter();\tAudioEditorState::DecreaseParameter() " << std::endl;
+	effectManager->DecreaseParameter();
+}
+
+void AudioEditorState::ChangeEffectStatus()
+{
+
+	std::cout << "effectManager->ChangeEffectStatus();\tAudioEditorState::ChangeEffectStatus() " << std::endl;
+	effectManager->ChangeEffectStatus();
+}
+
+void AudioEditorState::UpdateDisplay()
+{
+
+	std::cout << "effectManager->UpdateDisplay();\tAudioEditorState::ParamDisplay() " << std::endl;
+	effectManager->DisplayParameters(display);
+}
+
+const std::shared_ptr<EffectManager>& AudioEditorState::getEffectManager()
+{
+	return effectManager;
+}

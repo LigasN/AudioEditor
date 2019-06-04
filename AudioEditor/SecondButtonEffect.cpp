@@ -1,58 +1,63 @@
-
-#ifndef SECONDBUTTONEFFECT_CPP
-#define SECONDBUTTONEFFECT_CPP
-
 #include "SecondButtonEffect.h"
+#include <iostream>
 
-namespace NL
+SecondButtonEffect::SecondButtonEffect(const std::shared_ptr <Display> & display) : AudioEditorState(display)
 {
-	SecondButtonEffect::SecondButtonEffect(const std::shared_ptr <Display> & display) : AudioEditorState(display)
-	{
-	}
-
-
-	SecondButtonEffect::~SecondButtonEffect()
-	{
-	}
-
-	AudioEditorState::States SecondButtonEffect::getStateName()
-	{
-		return AudioEditorState::States::SecondButtonEffect;
-	}
-
-	const std::shared_ptr<EffectManager>& SecondButtonEffect::getEffectManager()
-	{
-		return effectManager;
-	}
-
-	void SecondButtonEffect::NextParameterSettings()
-	{
-		effectManager->NextParameterSettings();
-	}
-
-	void SecondButtonEffect::PreviousParameterSettings()
-	{
-		effectManager->PreviousParameterSettings();
-	}
-
-	void SecondButtonEffect::IncreaseParameter()
-	{
-		effectManager->IncreaseParameter();
-	}
-
-	void SecondButtonEffect::DecreaseParameter()
-	{
-		effectManager->DecreaseParameter();
-	}
-
-	void SecondButtonEffect::ChangeEffectStatus()
-	{
-		effectManager->ChangeEffectStatus();
-	}
-
-	void SecondButtonEffect::UpdateDisplay()
-	{
-		effectManager->ParamDisplay(display);
-	}
 }
-#endif // !SECONDBUTTONEFFECT_CPP
+
+
+SecondButtonEffect::~SecondButtonEffect()
+{
+}
+
+AudioEditorState::States SecondButtonEffect::getStateName()
+{
+	return AudioEditorState::States::SecondButtonEffect;
+}
+
+const std::shared_ptr<EffectManager>& SecondButtonEffect::getEffectManager()
+{
+	return effectManager;
+}
+
+void SecondButtonEffect::NextParameterSettings()
+{
+
+	std::cout << "effectManager->NextParameterSettings();\t SecondButtonEffect::NextParameterSettings()" << std::endl;
+	effectManager->NextParameterSettings();
+}
+
+void SecondButtonEffect::PreviousParameterSettings()
+{
+
+	std::cout << "effectManager->PreviousParameterSettings();\tSecondButtonEffect::PreviousParameterSettings() " << std::endl;
+	effectManager->PreviousParameterSettings();
+}
+
+void SecondButtonEffect::IncreaseParameter()
+{
+
+	std::cout << "effectManager->IncreaseParameter();\tSecondButtonEffect::IncreaseParameter()" << std::endl;
+	effectManager->IncreaseParameter();
+}
+
+void SecondButtonEffect::DecreaseParameter()
+{
+
+	std::cout << "effectManager->DecreaseParameter();\tSecondButtonEffect::DecreaseParameter() " << std::endl;
+	effectManager->DecreaseParameter();
+}
+
+void SecondButtonEffect::ChangeEffectStatus()
+{
+
+	std::cout << "effectManager->ChangeEffectStatus();\tSecondButtonEffect::ChangeEffectStatus() " << std::endl;
+	effectManager->ChangeEffectStatus();
+}
+
+void SecondButtonEffect::UpdateDisplay()
+{
+
+	std::cout << "effectManager->ParamDisplay(display);\tSecondButtonEffect::UpdateDisplay() " << std::endl;
+	effectManager->DisplayParameters(display);
+}

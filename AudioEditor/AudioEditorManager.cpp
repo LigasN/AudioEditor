@@ -1,315 +1,108 @@
-
-#ifndef AUDIOEDITORMANAGER_CPP
-#define AUDIOEDITORMANAGER_CPP
-
 #include "AudioEditorManager.h"
+#include <iostream>
 
-namespace NL
+AudioEditorManager::AudioEditorManager(const std::shared_ptr <Display> & display, const std::shared_ptr <Buttons> & buttons) : display(display), buttons(buttons),
+firstButtonEffect(std::make_shared <FirstButtonEffect>(display)), secondButtonEffect(std::make_shared <SecondButtonEffect>(display)),
+thirdButtonEffect(std::make_shared <ThirdButtonEffect>(display)), fourthButtonEffect(std::make_shared <FourthButtonEffect>(display)),
+audioPlayer(std::make_shared <AudioPlayer>(display)), currentState(std::make_shared <AudioPlayer>(display))
 {
+}
 
-	AudioEditorManager::AudioEditorManager(const std::shared_ptr <Display> & display, const std::shared_ptr <Buttons> & buttons) : display(display), buttons(buttons),
-		firstButtonEffect(std::make_shared <FirstButtonEffect>(display)), secondButtonEffect(std::make_shared <SecondButtonEffect>(display)),
-		thirdButtonEffect(std::make_shared <ThirdButtonEffect>(display)), fourthButtonEffect(std::make_shared <FourthButtonEffect>(display)),
-		audioPlayer(std::make_shared <AudioPlayer>(display)), currentState(std::make_shared <AudioEditorState>(display))
+AudioEditorManager::~AudioEditorManager()
+{
+}
+
+void AudioEditorManager::updateState()
+{
+	std::cout << "Update STate()" << std::endl;
+	std::cout << (int)currentState->getStateName() << std::endl;
+	Buttons::MousePositions clickedButton = buttons->ButtonUpdate();
+
+	switch (clickedButton)
 	{
-		currentState = audioPlayer;
-	}
+	case Buttons::MousePositions::playButton:
 
-	AudioEditorManager::~AudioEditorManager()
-	{
-	}
-
-	bool AudioEditorManager::updateState()
-	{
-
-		Buttons::MousePositions clickedButton = buttons->ButtonUpdate();
-
-		switch (clickedButton)
+		switch (currentState->getStateName())
 		{
-		case Buttons::MousePositions::playButton:
+			std::cout << "getStateName()" << std::endl;
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+		case AudioEditorState::States::NoneEffectState:
 
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-			case AudioEditorState::States::NoneEffectState:
+			currentState = audioPlayer;
 
-				currentState = audioPlayer;
+			std::cout << "currentState = audioPlayer;" << std::endl;
+			std::cout << (int)currentState->getStateName() << std::endl;
+		case AudioEditorState::States::Player:
 
-			case AudioEditorState::States::Player:
-				audioPlayer->UpdateEditedSound(firstButtonEffect->getEffectManager(), secondButtonEffect->getEffectManager(), thirdButtonEffect->getEffectManager(), fourthButtonEffect->getEffectManager());
-				audioPlayer->Play();
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
+			std::cout << "audioPlayer->UpdateEditedSound();\tAudioEditorManager::updateState() " << std::endl;
+			audioPlayer->UpdateEditedSound(firstButtonEffect->getEffectManager(), secondButtonEffect->getEffectManager(), thirdButtonEffect->getEffectManager(), fourthButtonEffect->getEffectManager());
+			std::cout << "sound updated" << std::endl;
+			audioPlayer->Play();
 			break;
 
-		case Buttons::MousePositions::cleanButton:
+		default:
+			assert("Developer's mistake");
+			break;
+		}
 
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-			case AudioEditorState::States::NoneEffectState:
+		break;
 
-				currentState = audioPlayer;
+	case Buttons::MousePositions::cleanButton:
 
-			case AudioEditorState::States::Player:
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+		case AudioEditorState::States::NoneEffectState:
 
-				audioPlayer->Clean();
-				break;
+			currentState = audioPlayer;
 
-			default:
-				assert("Developer's mistake");
-				break;
-			}
+		case AudioEditorState::States::Player:
 
+			audioPlayer->Clean();
 			break;
 
-		case Buttons::MousePositions::stopButton:
+		default:
+			assert("Developer's mistake");
+			break;
+		}
 
-			switch (currentState->getStateName())
+		break;
+
+	case Buttons::MousePositions::stopButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+		case AudioEditorState::States::NoneEffectState:
+
+			currentState = audioPlayer;
+
+		case AudioEditorState::States::Player:
+
+			if (audioPlayer->GetStatus())
 			{
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-			case AudioEditorState::States::NoneEffectState:
-
-				currentState = audioPlayer;
-
-			case AudioEditorState::States::Player:
-
-				if (audioPlayer->GetStatus())
-				{
-					audioPlayer->Stop();
-				}
-
-				else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
-				{
-					audioPlayer->SetSavingState();
-				}
-
-				else if (!audioPlayer->GetStatus() && audioPlayer->GetSavingState())
-				{
-					audioPlayer->Save();
-					audioPlayer->ResetSavingState();
-				}
-
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
+				audioPlayer->Stop();
 			}
 
-			break;
-
-		case Buttons::MousePositions::rightArrowButton:
-
-			switch (currentState->getStateName())
+			else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
 			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-
-				break;
-
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState->NextParameterSettings();
-
-			default:
-				assert("Developer's mistake");
-				break;
+				audioPlayer->SetSavingState();
 			}
 
-			break;
-
-		case Buttons::MousePositions::leftArrowButton:
-
-			switch (currentState->getStateName())
+			else if (!audioPlayer->GetStatus() && audioPlayer->GetSavingState())
 			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-
-				break;
-
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState->PreviousParameterSettings();
-
-			default:
-				assert("Developer's mistake");
-				break;
+				audioPlayer->Save();
+				audioPlayer->ResetSavingState();
 			}
-
-			break;
-
-		case Buttons::MousePositions::upArrowButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-
-				break;
-
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState->IncreaseParameter();
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::downArrowButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-
-				break;
-
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState->DecreaseParameter();
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::firstEffectButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState = firstButtonEffect;
-				currentState->UpdateDisplay();
-				break;
-
-			case AudioEditorState::States::FirstButtonEffect:
-
-				currentState->ChangeEffectStatus();
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::secondEffectButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState = secondButtonEffect;
-				currentState->UpdateDisplay();
-				break;
-
-			case AudioEditorState::States::SecondButtonEffect:
-
-				currentState->ChangeEffectStatus();
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::thirdEffectButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState = thirdButtonEffect;
-				currentState->UpdateDisplay();
-				break;
-
-			case AudioEditorState::States::ThirdButtonEffect:
-
-				currentState->ChangeEffectStatus();
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::fourthEffectButton:
-
-			switch (currentState->getStateName())
-			{
-			case AudioEditorState::States::Player:
-			case AudioEditorState::States::NoneEffectState:
-			case AudioEditorState::States::FirstButtonEffect:
-			case AudioEditorState::States::SecondButtonEffect:
-			case AudioEditorState::States::ThirdButtonEffect:
-
-				currentState = fourthButtonEffect;
-				currentState->UpdateDisplay();
-				break;
-
-			case AudioEditorState::States::FourthButtonEffect:
-
-				currentState->ChangeEffectStatus();
-				break;
-
-			default:
-				assert("Developer's mistake");
-				break;
-			}
-
-			break;
-
-		case Buttons::MousePositions::noneButton:
 
 			break;
 
@@ -317,7 +110,211 @@ namespace NL
 			assert("Developer's mistake");
 			break;
 		}
+
+		break;
+
+	case Buttons::MousePositions::rightArrowButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+
+			break;
+
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState->NextParameterSettings();
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::leftArrowButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+
+			break;
+
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState->PreviousParameterSettings();
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::upArrowButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+
+			break;
+
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState->IncreaseParameter();
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::downArrowButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+
+			break;
+
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState->DecreaseParameter();
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::firstEffectButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState = firstButtonEffect;
+			currentState->UpdateDisplay();
+			break;
+
+		case AudioEditorState::States::FirstButtonEffect:
+
+			currentState->ChangeEffectStatus();
+			break;
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::secondEffectButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState = secondButtonEffect;
+			currentState->UpdateDisplay();
+			break;
+
+		case AudioEditorState::States::SecondButtonEffect:
+
+			currentState->ChangeEffectStatus();
+			break;
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::thirdEffectButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState = thirdButtonEffect;
+			currentState->UpdateDisplay();
+			break;
+
+		case AudioEditorState::States::ThirdButtonEffect:
+
+			currentState->ChangeEffectStatus();
+			break;
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::fourthEffectButton:
+
+		switch (currentState->getStateName())
+		{
+		case AudioEditorState::States::Player:
+		case AudioEditorState::States::NoneEffectState:
+		case AudioEditorState::States::FirstButtonEffect:
+		case AudioEditorState::States::SecondButtonEffect:
+		case AudioEditorState::States::ThirdButtonEffect:
+
+			currentState = fourthButtonEffect;
+			currentState->UpdateDisplay();
+			break;
+
+		case AudioEditorState::States::FourthButtonEffect:
+
+			currentState->ChangeEffectStatus();
+			break;
+
+		default:
+			assert("Developer's mistake");
+			break;
+		}
+
+		break;
+
+	case Buttons::MousePositions::noneButton:
+
+		break;
+
+	default:
+		assert("Developer's mistake");
+		break;
 	}
 }
-
-#endif

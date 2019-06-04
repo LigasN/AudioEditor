@@ -1,8 +1,4 @@
 #pragma once
-
-#ifndef TXT_BODY_POLISH_H
-#define TXT_BODY_POLISH_H
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///
 /// HEADERS
@@ -13,32 +9,27 @@
 #include <string>
 #include < vector>
 
-namespace NL
+///////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// TXT_Body_Polish class
+///
+/// Aim: Handle Body element with other TXT classes. Loads matrix of texts in Polish.
+///
+///////////////////////////////////////////////////////////////////////////////////////////////
+class TXT_Body_Polish : public TXT_Body
 {
+public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// TXT_Body_Polish class
+	/// Virtual override function in TXT_Body_Polish class
 	///
-	/// Aim: Handle Body element with other TXT classes. Loads matrix of texts in Polish.
+	/// Aim: Load matrix with text from file in proper language (Polish)
+	///
+	/// Arguments: std::vector <std::wstring> &
+	///
+	/// Returns: void
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class TXT_Body_Polish : public TXT_Body
-	{
-	public:
-
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		///
-		/// Virtual override function in TXT_Body_Polish class
-		///
-		/// Aim: Load matrix with text from file in proper language (Polish)
-		///
-		/// Arguments: std::vector <std::wstring> &
-		///
-		/// Returns: void
-		///
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		virtual void Load_Texts_Matrix(std::vector <std::wstring> &newText) override;
-	};
-}
-#endif // !TXT_BODY_POLISH_H
+	virtual void Load_Texts_Matrix(std::vector <std::wstring> &newText) override;
+};
