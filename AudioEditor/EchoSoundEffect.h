@@ -3,34 +3,140 @@
 #ifndef ECHOSOUNDEFFECT_H
 #define ECHOSOUNDEFFECT_H
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// HEADERS
+///
+///////////////////////////////////////////////////////////////////////////////////////////////
 #include "SoundEffect.h"
 #include "Display.h"
 #include "C_TEXTS.h"
 
 namespace NL
 {
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// EchoSoundEffect class	
+	///
+	/// Aim: Add echo sound effect to sound
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
 	class EchoSoundEffect : public SoundEffect
 	{
 	public:
 
-		enum class Parameters
-		{
-			Delay_time,		//(seconds)	The amount of delay between the echoes, in other words the length of each echo.
-			Decay_factor	//Usually a number between 0 and 1. A value of 0 means no echo, and a value of 1 means that each echo is exactly as loud as the original, so this merely extends the current selection unchanged.A value of 0.5 reduces the amplitude or loudness of each echo by half each time, so the audio dies out quite slowly.Smaller values make it die out more quickly.Values above 1 increase the amplitude of the echo each time, which you could use as a special effect.
-		};
 
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Constructor in EchoSoundEffect class
+		///
+		/// Aim: Set all variables
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
 		EchoSoundEffect();
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Destructor in EchoSoundEffect class
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
 		~EchoSoundEffect();
 
-		void ParamDisplay(const std::shared_ptr <Display> & display);
-		virtual void IncreaseParameter();
-		virtual void DecreaseParameter();
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Virtual override function in EchoSoundEffect class
+		///
+		/// Aim: Display effect options
+		///
+		/// Arguments: const std::shared_ptr <Display> &
+		///
+		/// Returns: void
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		virtual void ParamDisplay(const std::shared_ptr <Display> & display) override;
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Virtual override function in EchoSoundEffect class
+		///
+		/// Aim: Increase parameter
+		///
+		/// Arguments: void
+		///
+		/// Returns: void
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		virtual void IncreaseParameter() override;
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Virtual override function in EchoSoundEffect class
+		///
+		/// Aim: Decrease parameter
+		///
+		/// Arguments: void
+		///
+		/// Returns: void
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		virtual void DecreaseParameter() override;
 
 	private:
-		int delayTime;		//(seconds)	The amount of delay between the echoes, in other words the length of each echo.
-		float decayFactor;	 //Usually a number between 0 and 1. A value of 0 means no echo, and a value of 1 means that each echo is exactly as loud as the original, so this merely extends the current selection unchanged.A value of 0.5 reduces the amplitude or loudness of each echo by half each time, so the audio dies out quite slowly.Smaller values make it die out more quickly.Values above 1 increase the amplitude of the echo each time, which you could use as a special effect.
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Private variable in EchoSoundEffect class
+		///
+		/// Aim: The amount of delay between the echoes.
+		///
+		/// Type: int
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		int delayTime;		
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Private variable in EchoSoundEffect class
+		///
+		/// Aim:  More than 0 and less than 10. When set 1 level of each echo is the same. When more 
+		///		  echo is loader than sound, if less it dies in time.
+		///
+		/// Type: float
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		float decayFactor;	
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// Private variable in EchoSoundEffect class
+		///
+		/// Aim: Stores information about number of displayed parameter.
+		///
+		/// Type: unsigned int
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
 		unsigned int parameterOnDisplay;
+
+		///////////////////////////////////////////////////////////////////////////////////////////////
+		///
+		/// function in EchoSoundEffect class
+		///
+		/// Aim: Makes the main task of this class. Edits sound with echo effect on specific parameters
+		///
+		/// Arguments: std::vector <sf::Int16> & soundSamples, unsigned int sampleRate
+		///
+		/// Returns: void
+		///
+		///////////////////////////////////////////////////////////////////////////////////////////////
 		void makeEffect(std::vector <sf::Int16> & soundSamples, unsigned int sampleRate);			//funcja zmieniana przez design pattern strategy
 	};
 }
 #endif // !ECHOSOUNDEFFECT_H
+
+
+//enum class Parameters
+//{
+//	Delay_time,		//(seconds)	The amount of delay between the echoes, in other words the length of each echo.
+//	Decay_factor	//Usually a number between 0 and 1. A value of 0 means no echo, and a value of 1 means that each echo is exactly as loud as the original, so this merely extends the current selection unchanged.A value of 0.5 reduces the amplitude or loudness of each echo by half each time, so the audio dies out quite slowly.Smaller values make it die out more quickly.Values above 1 increase the amplitude of the echo each time, which you could use as a special effect.
+//};

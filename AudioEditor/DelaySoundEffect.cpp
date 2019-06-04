@@ -61,27 +61,27 @@ namespace NL
 
 		case 1:
 
-			display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(delayLevelPerEcho));
+			display->setText(C_TEXTS::TEXT_ID::Delay_level_per_echo, std::to_wstring(delayLevelPerEcho));
 			break;
 
 		case 2:
 
-			display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(delayTime));
+			display->setText(C_TEXTS::TEXT_ID::Delay_time, std::to_wstring(delayTime));
 			break;
 
 		case 3:
 
-			display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(pitchChangeEffect));
+			display->setText(C_TEXTS::TEXT_ID::Pitch_change_effect, std::to_wstring(pitchChangeEffect));
 			break;
 
 		case 4:
 
-			display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(pitchChangePerEcho));
+			display->setText(C_TEXTS::TEXT_ID::Pitch_change_per_echo, std::to_wstring(pitchChangePerEcho));
 			break;
 
 		case 5:
 
-			display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(numberOfEchoes));
+			display->setText(C_TEXTS::TEXT_ID::Number_of_echoes, std::to_wstring(numberOfEchoes));
 			break;
 
 		default:

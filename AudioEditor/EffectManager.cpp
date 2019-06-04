@@ -47,6 +47,11 @@ namespace NL
 		return effect->remakeSound(sound);
 	}
 
+	void EffectManager::ParamDisplay(const std::shared_ptr<Display>& display)
+	{
+		effect->ParamDisplay(display);
+	}
+
 	void EffectManager::NextParameterSettings()
 	{
 		effect->NextParameterSettings();
