@@ -16,6 +16,7 @@
 #include "NoneEffectState.h"
 #include <assert.h>
 #include "C_TEXTS.h"
+#include <Windows.h>
 
 class AudioEditorManager
 {

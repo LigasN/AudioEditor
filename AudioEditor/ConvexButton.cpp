@@ -41,12 +41,12 @@ ConvexButton::ConvexButton(sf::Vector2f position, sf::Color color, float rotatio
 
 void ConvexButton::Push()
 {
-	status = 1;
+	status = true;
 }
 
 void ConvexButton::Release()
 {
-	status = 0;
+	status = false;
 }
 
 bool ConvexButton::OnTarget(const sf::Vector2f & sight)
@@ -58,5 +58,10 @@ bool ConvexButton::OnTarget(const sf::Vector2f & sight)
 void ConvexButton::ChangeStatus()
 {
 	status = !status;
+}
+
+bool ConvexButton::getStatus()
+{
+	return status;
 }
 

@@ -22,6 +22,14 @@ void AudioEditorManager::updateState()
 	{
 	case Buttons::MousePositions::playButton:
 
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::playButton))
+		{
+			buttons->setOn(Buttons::MousePositions::playButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::playButton);
+
+
 		switch (currentState->getStateName())
 		{
 			std::cout << "getStateName()" << std::endl;
@@ -41,6 +49,11 @@ void AudioEditorManager::updateState()
 			audioPlayer->UpdateEditedSound(firstButtonEffect->getEffectManager(), secondButtonEffect->getEffectManager(), thirdButtonEffect->getEffectManager(), fourthButtonEffect->getEffectManager());
 			std::cout << "sound updated" << std::endl;
 			audioPlayer->Play();
+			if (audioPlayer->GetStatus() == true)
+				buttons->setOn(Buttons::MousePositions::playButton);
+			else
+				buttons->setOff(Buttons::MousePositions::playButton);
+
 			break;
 
 		default:
@@ -51,6 +64,14 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::cleanButton:
+
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::cleanButton))
+		{
+			buttons->setOn(Buttons::MousePositions::cleanButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::cleanButton);
+
 
 		switch (currentState->getStateName())
 		{
@@ -76,6 +97,14 @@ void AudioEditorManager::updateState()
 
 	case Buttons::MousePositions::stopButton:
 
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::stopButton))
+		{
+			buttons->setOn(Buttons::MousePositions::stopButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::stopButton);
+
+
 		switch (currentState->getStateName())
 		{
 		case AudioEditorState::States::FirstButtonEffect:
@@ -91,6 +120,8 @@ void AudioEditorManager::updateState()
 			if (audioPlayer->GetStatus())
 			{
 				audioPlayer->Stop();
+				buttons->setOff(Buttons::MousePositions::playButton);
+				buttons->setOff(Buttons::MousePositions::cleanButton);
 			}
 
 			else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
@@ -115,6 +146,13 @@ void AudioEditorManager::updateState()
 
 	case Buttons::MousePositions::rightArrowButton:
 
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::rightArrowButton))
+		{
+			buttons->setOn(Buttons::MousePositions::rightArrowButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::rightArrowButton);
+
 		switch (currentState->getStateName())
 		{
 		case AudioEditorState::States::Player:
@@ -128,6 +166,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FourthButtonEffect:
 
 			currentState->NextParameterSettings();
+			currentState->UpdateDisplay();
 
 		default:
 			assert("Developer's mistake");
@@ -137,6 +176,13 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::leftArrowButton:
+
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::leftArrowButton))
+		{
+			buttons->setOn(Buttons::MousePositions::leftArrowButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::leftArrowButton);
 
 		switch (currentState->getStateName())
 		{
@@ -151,6 +197,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FourthButtonEffect:
 
 			currentState->PreviousParameterSettings();
+			currentState->UpdateDisplay();
 
 		default:
 			assert("Developer's mistake");
@@ -160,6 +207,13 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::upArrowButton:
+
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::upArrowButton))
+		{
+			buttons->setOn(Buttons::MousePositions::upArrowButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::upArrowButton);
 
 		switch (currentState->getStateName())
 		{
@@ -174,6 +228,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FourthButtonEffect:
 
 			currentState->IncreaseParameter();
+			currentState->UpdateDisplay();
 
 		default:
 			assert("Developer's mistake");
@@ -183,6 +238,13 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::downArrowButton:
+
+		if (!buttons->getButtonsStatus(Buttons::MousePositions::downArrowButton))
+		{
+			buttons->setOn(Buttons::MousePositions::downArrowButton);
+			Sleep(2);
+		}
+		buttons->setOff(Buttons::MousePositions::downArrowButton);
 
 		switch (currentState->getStateName())
 		{
@@ -197,6 +259,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FourthButtonEffect:
 
 			currentState->DecreaseParameter();
+			currentState->UpdateDisplay();
 
 		default:
 			assert("Developer's mistake");
@@ -222,6 +285,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FirstButtonEffect:
 
 			currentState->ChangeEffectStatus();
+			currentState->UpdateDisplay();
 			break;
 
 		default:
@@ -248,6 +312,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::SecondButtonEffect:
 
 			currentState->ChangeEffectStatus();
+			currentState->UpdateDisplay();
 			break;
 
 		default:
@@ -274,6 +339,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::ThirdButtonEffect:
 
 			currentState->ChangeEffectStatus();
+			currentState->UpdateDisplay();
 			break;
 
 		default:
@@ -300,6 +366,7 @@ void AudioEditorManager::updateState()
 		case AudioEditorState::States::FourthButtonEffect:
 
 			currentState->ChangeEffectStatus();
+			currentState->UpdateDisplay();
 			break;
 
 		default:

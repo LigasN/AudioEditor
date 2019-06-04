@@ -96,3 +96,132 @@ Buttons::MousePositions Buttons::ButtonUpdate()
 	else return MousePositions::noneButton;
 
 }
+
+void Buttons::setOn(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		FirstEffectButton.Push();
+		break;
+	case Buttons::MousePositions::secondEffectButton:
+		SecondEffectButton.Push();
+		break;
+	case Buttons::MousePositions::thirdEffectButton:
+		ThirdEffectButton.Push();
+		break;
+	case Buttons::MousePositions::fourthEffectButton:
+		FourthEffectButton.Push();
+		break;
+	case Buttons::MousePositions::playButton:
+		PlayButtonArea.Push();
+		break;
+	case Buttons::MousePositions::stopButton:
+		StopButtonArea.Push();
+		break;
+	case Buttons::MousePositions::cleanButton:
+		CleanButtonArea.Push();
+		break;
+	case Buttons::MousePositions::rightArrowButton:
+		RightArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::leftArrowButton:
+		LeftArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::upArrowButton:
+		UpArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::downArrowButton:
+		DownArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
+}
+
+void Buttons::setOff(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		FirstEffectButton.Release();
+		break;
+	case Buttons::MousePositions::secondEffectButton:
+		SecondEffectButton.Release();
+		break;
+	case Buttons::MousePositions::thirdEffectButton:
+		ThirdEffectButton.Release();
+		break;
+	case Buttons::MousePositions::fourthEffectButton:
+		FourthEffectButton.Release();
+		break;
+	case Buttons::MousePositions::playButton:
+		PlayButtonArea.Release();
+		break;
+	case Buttons::MousePositions::stopButton:
+		StopButtonArea.Release();
+		break;
+	case Buttons::MousePositions::cleanButton:
+		CleanButtonArea.Release();
+		break;
+	case Buttons::MousePositions::rightArrowButton:
+		RightArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::leftArrowButton:
+		LeftArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::upArrowButton:
+		UpArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::downArrowButton:
+		DownArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
+}
+
+bool Buttons::getButtonsStatus(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		return FirstEffectButton.getStatus();
+
+	case Buttons::MousePositions::secondEffectButton:
+		return SecondEffectButton.getStatus();
+
+	case Buttons::MousePositions::thirdEffectButton:
+		return ThirdEffectButton.getStatus();
+
+	case Buttons::MousePositions::fourthEffectButton:
+		return FourthEffectButton.getStatus();
+
+	case Buttons::MousePositions::playButton:
+		return PlayButtonArea.getStatus();
+
+	case Buttons::MousePositions::stopButton:
+		return StopButtonArea.getStatus();
+
+	case Buttons::MousePositions::cleanButton:
+		return CleanButtonArea.getStatus();
+
+	case Buttons::MousePositions::rightArrowButton:
+		return RightArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::leftArrowButton:
+		return LeftArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::upArrowButton:
+		return UpArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::downArrowButton:
+		return DownArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
+}

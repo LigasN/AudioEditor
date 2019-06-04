@@ -55,16 +55,18 @@ const std::shared_ptr<EffectManager>& AudioPlayer::getEffectManager()
 void AudioPlayer::Play()
 {
 	Stop();
-	display->setText(C_TEXTS::TEXT_ID::Playing);
+	display->setText(C_TEXTS::TEXT_ID::Wait);
 	playingSound.setBuffer(editedSound);
+	display->setText(C_TEXTS::TEXT_ID::Playing);
 	playingSound.play();
 }
 
 void AudioPlayer::Clean()
 {
 	Stop();
-	display->setText(C_TEXTS::TEXT_ID::PlayingClean);
+	display->setText(C_TEXTS::TEXT_ID::Wait);
 	playingSound.setBuffer(cleanSound);
+	display->setText(C_TEXTS::TEXT_ID::PlayingClean);
 	playingSound.play();
 
 }

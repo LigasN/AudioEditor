@@ -87,7 +87,8 @@ public:
 		triangle,
 		sawtooth,
 		inverse_sawtooth,
-		square
+		square,
+		Wait
 
 	};
 

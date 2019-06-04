@@ -17,7 +17,7 @@ Zatrzymane
 Nie udalo sie zapisac pliku
 
 Effect
-
+;
 Przester
 
 Echo
@@ -27,31 +27,31 @@ Opoznienie
 Tremolo
 
 Opoznienie kolejnego echa
-
+;
 Czas opoznienia
-
+;
 Ton
-
+;
 Zmiana tonu na echo
-
+;
 Liczba ech
-
+;
 Poziom podciecia
-
+;
 Wzmocnienie wstepne
-
+;
 Wzmocnienie koncowe
-
+;
 Wspolczynnik rozpadania
-
+;
 Typ sygnalu
-
+;
 Faza startowa
-
+;
 Poziom wilgoci
-
+;
 czestotliwosc
-
+;
 sin
 
 trojkatny
@@ -61,4 +61,6 @@ pila
 odwrocona pila
 
 prostokatny
+
+Ladowanie
 

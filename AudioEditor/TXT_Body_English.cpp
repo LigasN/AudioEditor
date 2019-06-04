@@ -11,21 +11,28 @@ void TXT_Body_English::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 
 	std::wstring partLine{};
 	std::wstring wholeLine{};
+	std::wstring noEnter = L";";
 	int i{};
 	while (std::getline(file, partLine))
 	{
 
-		if (partLine.empty()) {
+		if (partLine.empty())
+		{
 			wholeLine += L"\n";
+			newText.push_back(wholeLine);
+			wholeLine.clear();
+			assert(wholeLine.empty());
+		}
+		else if (partLine == noEnter)
+		{
 			newText.push_back(wholeLine);
 			wholeLine.clear();
 			assert(wholeLine.empty());
 		}
 		else
 		{
-			wholeLine += partLine + L"\n";
+			wholeLine += partLine;
 		}
-
 	}
 	newText.push_back(wholeLine);
 	file.close();
