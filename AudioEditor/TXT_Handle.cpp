@@ -37,7 +37,6 @@ TXT_Handle::TXT_Handle(LANGUAGES language)
 void TXT_Handle::Load_Texts_Matrix(std::vector <std::wstring> &newText)
 {
 	assert(BodyObject);
-	BodyObject->Load_Texts_Matrix( newText );
+	BodyObject->Load_Texts_Matrix(newText);
 }
-
 

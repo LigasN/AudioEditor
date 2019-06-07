@@ -1,7 +1,8 @@
 #include "Prog.h"
-#include <iostream>  //to delete after tests
 
-Prog::Prog() : buttons(), display(sf::Vector2f(440.f,132.f), sf::Vector2f(313.f, 148.f))
+Prog::Prog(const std::shared_ptr < sf::RenderWindow > & window) : window(window), buttons(std::make_shared <Buttons >(window)),
+display(std::make_shared <Display>(sf::Vector2f(440.f, 132.f), sf::Vector2f(313.f, 148.f))), TEXTS_object(std::make_unique <C_TEXTS>(TXT_Handle::LANGUAGES::Polish)), 
+audioEditorManager(display, buttons)
 {
 	Exit = 0;
 }
@@ -13,57 +14,47 @@ Prog::~Prog()
 
 Prog * Prog::instance = 0;
 
-Prog * Prog::getInstance()
+Prog * Prog::getInstance(const std::shared_ptr < sf::RenderWindow > & window)
 {
 	if (!instance)
 	{
-		instance = new Prog;
+		instance = new Prog(window);
+
 	}
 	return instance;
 }
 
-bool Prog::Update(sf::RenderWindow& window)
+bool Prog::Update()
 {
-
 	sf::Texture backgroundTexture;
 	if (backgroundTexture.loadFromFile("Background.png")) assert("Error with textures");
 
 	sf::Sprite backgoundSprite;
 	backgoundSprite.setTexture(backgroundTexture);
 
+	window->clear();
+	window->draw(backgoundSprite);
+	window->draw(*buttons);
+	window->draw(*display);
+	window->display();
+
 	sf::Event event;
-	while (window.pollEvent(event))
+	while (window->pollEvent(event))
 	{
-		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
+		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))  // do usuniecia kiedys
 		{
-			window.close();
+			window->close();
 			return EXIT_SUCCESS;
-		}
-		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::A))
-		{
-			display.setText(C_TEXTS::TEXT_ID::Error);
-		}
-		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::B))
-		{
-			display.setText(C_TEXTS::TEXT_ID::Upload_Sound);
-		}
-		if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z))
-		{
-			display.setText(C_TEXTS::TEXT_ID::Zuzanka_TM);
 		}
 	}
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		buttons.ButtonUpdate(window);
+		//buttons->ButtonUpdate();
+		audioEditorManager.updateState();
 		while (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {}
-	}
 
-	window.clear();
-	window.draw(backgoundSprite);
-	window.draw(buttons);
-	window.draw(display);
-	window.display();
+	}
 	return EXIT_SUCCESS;
 }
 

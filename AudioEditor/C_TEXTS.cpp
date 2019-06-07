@@ -1,10 +1,6 @@
-#ifndef TEXTS_MATRIX_CPP
-#define TEXTS_MATRIX_CPP
-
 #include "C_TEXTS.h"
 #include <iostream>
 #include <assert.h>
-
 
 C_TEXTS::C_TEXTS()
 {
@@ -34,8 +30,8 @@ C_TEXTS::C_TEXTS()
 		assert("Bad choice");
 		break;
 	}
-	
-	TEXTS_Update->Load_Texts_Matrix( TEXTS );
+
+	TEXTS_Update->Load_Texts_Matrix(TEXTS);
 
 }
 
@@ -49,11 +45,11 @@ C_TEXTS::C_TEXTS(TXT_Handle::LANGUAGES language)
 
 bool C_TEXTS::langugeUpdate(int language)
 {
-	switch(language)
+	switch (language)
 	{
 	case 0:
 		TEXTS_Update = std::make_unique<TXT_Handle>(TXT_Handle::LANGUAGES::Polish);
-		TEXTS_Update->Load_Texts_Matrix( TEXTS );
+		TEXTS_Update->Load_Texts_Matrix(TEXTS);
 		return true;
 	case 1:
 		TEXTS_Update = std::make_unique<TXT_Handle>(TXT_Handle::LANGUAGES::English);
@@ -89,7 +85,3 @@ std::wstring C_TEXTS::getText(TEXT_ID text)
 {
 	return  TEXTS[(int)text];
 }
-
-
-
-#endif	//TEXTS_MATRIX_CPP

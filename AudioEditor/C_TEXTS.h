@@ -8,8 +8,6 @@
 #include <memory>
 #include <vector>
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///	Class C_TEXTS
@@ -61,7 +59,37 @@ public:
 		Error,
 		Settings,
 		Upload_Sound,
-		Zuzanka_TM
+		SavingQuestion,
+		TextSaved,
+		Playing,
+		PlayingClean,
+		Stopped,
+		ProblemWithSave,
+		EffectName,
+		Distortion,
+		Echo,
+		Delay,
+		Tremolo,
+		Delay_level_per_echo,
+		Delay_time,
+		Pitch_change_effect,
+		Pitch_change_per_echo,
+		Number_of_echoes,
+		Clipping_level,
+		Drive,
+		Make_up_Gain,
+		Decay_factor,
+		waveform_type,
+		startingPhase,
+		wetLevel,
+		frequency,
+		sin,
+		triangle,
+		sawtooth,
+		inverse_sawtooth,
+		square,
+		Wait
+
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////

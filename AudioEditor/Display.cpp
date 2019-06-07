@@ -1,7 +1,5 @@
 #include "Display.h"
 
-#include <iostream>
-
 void Display::draw(sf::RenderTarget & target, sf::RenderStates state) const
 {
 	target.draw(display, state);															//<--------Trzeba tu wrocic jezeli zdefiniowane SOME_SHAPES
@@ -10,7 +8,7 @@ void Display::draw(sf::RenderTarget & target, sf::RenderStates state) const
 
 #ifdef SOME_SHAPES
 
-Display::Display() : display(&sf::RectangleShape(sf::Vector2f(20.f, 5.f))), font(), 
+Display::Display() : display(&sf::RectangleShape(sf::Vector2f(20.f, 5.f))), font(),
 TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 20)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));
@@ -34,7 +32,7 @@ TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEX
 }
 
 
-Display::Display(const sf::Vector2f & size, sf::Vector2f position) : display(&sf::RectangleShape(size)), font(),
+Display::Display(const sf::Vector2f size, sf::Vector2f position) : display(&sf::RectangleShape(size)), font(),
 TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 40)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));
@@ -46,7 +44,7 @@ TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEX
 	text.setFillColor(textColor);
 	std::cout << "wstepne rozmiary i pozycja x text: " << text.getLocalBounds().width << "\t " << text.getPosition().x << "display: " << display->getLocalBounds().width << "\t " << display->getPosition().x << std::endl;
 }
-		//WARNING! here is commented function setText
+	//WARNING! here is commented function setText
 void Display::setText(C_TEXTS::TEXT_ID textID)
 {
 	text.setString(sf::String(TEXTS.getText(textID)));
@@ -91,7 +89,7 @@ TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEX
 	display.setFillColor(sf::Color::Transparent);
 }
 
-Display::Display(sf::RectangleShape shape) : display(shape), font(), TEXTS(TXT_Handle::LANGUAGES::Polish), 
+Display::Display(sf::RectangleShape shape) : display(shape), font(), TEXTS(TXT_Handle::LANGUAGES::Polish),
 text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 20)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));
@@ -103,7 +101,7 @@ text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 20)
 	display.setFillColor(sf::Color::Transparent);
 }
 
-Display::Display(const sf::Vector2f & size, sf::Vector2f position) : display(sf::RectangleShape(size)), font(),
+Display::Display(const sf::Vector2f size, sf::Vector2f position) : display(sf::RectangleShape(size)), font(),
 TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEXT_ID::Settings)), font, 40)
 {
 	assert(font.loadFromFile("DSEG14Modern-Regular.ttf"));
@@ -116,7 +114,7 @@ TEXTS(TXT_Handle::LANGUAGES::Polish), text(sf::String(TEXTS.getText(C_TEXTS::TEX
 	display.setFillColor(sf::Color::Transparent);
 }
 
-void Display::setText(C_TEXTS::TEXT_ID textID)
+void Display::setText(const C_TEXTS::TEXT_ID textID)
 {
 	text.setString(sf::String(TEXTS.getText(textID)));
 
@@ -131,7 +129,53 @@ void Display::setText(C_TEXTS::TEXT_ID textID)
 		{
 			text.setCharacterSize(text.getCharacterSize() + 1);
 		}
-		else 
+		else
+			ready = true;
+
+	} while (!ready);
+
+	text.setOrigin(text.getLocalBounds().width / 2.f, text.getLocalBounds().height / 5.f);
+}
+
+void Display::setText(const C_TEXTS::TEXT_ID textID, const std::wstring value)
+{
+	text.setString(sf::String(TEXTS.getText(textID)) + " : " + value);
+
+	bool ready{};
+	do
+	{
+		if (text.getLocalBounds().width > display.getLocalBounds().width - 10)
+		{
+			text.setCharacterSize(text.getCharacterSize() - 1);
+		}
+		else if (text.getLocalBounds().width < display.getLocalBounds().width - 30)
+		{
+			text.setCharacterSize(text.getCharacterSize() + 1);
+		}
+		else
+			ready = true;
+
+	} while (!ready);
+
+	text.setOrigin(text.getLocalBounds().width / 2.f, text.getLocalBounds().height / 5.f);
+}
+
+void Display::setText(const C_TEXTS::TEXT_ID textID1, const C_TEXTS::TEXT_ID textID2)
+{
+	text.setString(sf::String(TEXTS.getText(textID1)) + " : " + TEXTS.getText(textID2));
+
+	bool ready{};
+	do
+	{
+		if (text.getLocalBounds().width > display.getLocalBounds().width - 10)
+		{
+			text.setCharacterSize(text.getCharacterSize() - 1);
+		}
+		else if (text.getLocalBounds().width < display.getLocalBounds().width - 30)
+		{
+			text.setCharacterSize(text.getCharacterSize() + 1);
+		}
+		else
 			ready = true;
 
 	} while (!ready);
@@ -140,7 +184,6 @@ void Display::setText(C_TEXTS::TEXT_ID textID)
 }
 
 #endif // !SOME_SHAPES
-
 
 
 

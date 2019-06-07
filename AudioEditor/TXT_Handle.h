@@ -1,11 +1,11 @@
 #pragma once
+
 #include <memory>
 #include "TXT_Body.h"
 #include "TXT_Body_Polish.h"
 #include "TXT_Body_English.h"
 #include "TXT_Body_Italian.h"
 #include "TXT_Body_French.h"
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///
@@ -78,4 +78,3 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void Load_Texts_Matrix(std::vector <std::wstring> &newText);
 };
-

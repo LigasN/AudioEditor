@@ -135,12 +135,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioEditorManager.cpp" />
+    <ClCompile Include="AudioEditorState.cpp" />
+    <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="ConvexButton.cpp" />
+    <ClCompile Include="DelaySoundEffect.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="DistortionSoundEffect.cpp" />
+    <ClCompile Include="EchoSoundEffect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="FirstButtonEffect.cpp" />
+    <ClCompile Include="FourthButtonEffect.cpp" />
+    <ClCompile Include="NoneEffectState.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="C_TEXTS.cpp" />
     <ClCompile Include="Prog.cpp" />
+    <ClCompile Include="SecondButtonEffect.cpp" />
+    <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="ThirdButtonEffect.cpp" />
+    <ClCompile Include="TremoloSoundEffect.cpp" />
     <ClCompile Include="TXT_Body.cpp" />
     <ClCompile Include="TXT_Body_English.cpp" />
     <ClCompile Include="TXT_Body_French.cpp" />
@@ -150,12 +164,26 @@
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioEditorManager.h" />
+    <ClInclude Include="AudioEditorState.h" />
+    <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="ConvexButton.h" />
+    <ClInclude Include="DelaySoundEffect.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="DistortionSoundEffect.h" />
+    <ClInclude Include="EchoSoundEffect.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="FirstButtonEffect.h" />
+    <ClInclude Include="FourthButtonEffect.h" />
+    <ClInclude Include="NoneEffectState.h" />
     <ClInclude Include="RectangleButton.h" />
     <ClInclude Include="Buttons.h" />
     <ClInclude Include="C_TEXTS.h" />
     <ClInclude Include="Prog.h" />
+    <ClInclude Include="SecondButtonEffect.h" />
+    <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="ThirdButtonEffect.h" />
+    <ClInclude Include="TremoloSoundEffect.h" />
     <ClInclude Include="TXT_Body.h" />
     <ClInclude Include="TXT_Body_English.h" />
     <ClInclude Include="TXT_Body_French.h" />

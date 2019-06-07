@@ -15,10 +15,15 @@ void Buttons::draw(sf::RenderTarget & target, sf::RenderStates state) const
 	target.draw(DownArrowButtonArea, state);
 }
 
-Buttons::Buttons() : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499.f), color, 0.f, false),
-	SecondEffectButton(effectButtonSize, sf::Vector2f(462.f, 499.f), color, 0.f, false),
-	ThirdEffectButton(effectButtonSize, sf::Vector2f(743.f, 499.f), color, 0.f, false),
-	FourthEffectButton(effectButtonSize, sf::Vector2f(1024.f, 499.f), color, 0.f, false)
+Buttons::~Buttons()
+{
+}
+
+Buttons::Buttons(const std::shared_ptr <sf::Window> relativeTo) : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499.f), color, 0.f, false),
+SecondEffectButton(effectButtonSize, sf::Vector2f(462.f, 499.f), color, 0.f, false),
+ThirdEffectButton(effectButtonSize, sf::Vector2f(743.f, 499.f), color, 0.f, false),
+FourthEffectButton(effectButtonSize, sf::Vector2f(1024.f, 499.f), color, 0.f, false),
+relativeTo(relativeTo)
 {
 	PlayButtonArea = ConvexButton(sf::Vector2f(656.5f, 117.f), color, 0.f, ellipticalPoints, false);
 	StopButtonArea = ConvexButton(sf::Vector2f(656.5f, 293.f), color, 0.f, ellipticalPoints, false);
@@ -29,13 +34,9 @@ Buttons::Buttons() : FirstEffectButton(effectButtonSize, sf::Vector2f(181.f, 499
 	DownArrowButtonArea = ConvexButton(sf::Vector2f(906.f, 232.5f), color, -90.f, triangularPoints, false);
 }
 
-Buttons::~Buttons()
+Buttons::MousePositions Buttons::ButtonUpdate()
 {
-}
-
-Buttons::MousePositions Buttons::ButtonUpdate(const sf::Window & relativeTo)
-{
-	sf::Vector2f position = (sf::Vector2f)sf::Mouse::getPosition(relativeTo);
+	sf::Vector2f position = (sf::Vector2f)sf::Mouse::getPosition(*relativeTo);
 
 	if (FirstEffectButton.OnTarget(position))
 	{
@@ -94,4 +95,133 @@ Buttons::MousePositions Buttons::ButtonUpdate(const sf::Window & relativeTo)
 	}
 	else return MousePositions::noneButton;
 
+}
+
+void Buttons::setOn(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		FirstEffectButton.Push();
+		break;
+	case Buttons::MousePositions::secondEffectButton:
+		SecondEffectButton.Push();
+		break;
+	case Buttons::MousePositions::thirdEffectButton:
+		ThirdEffectButton.Push();
+		break;
+	case Buttons::MousePositions::fourthEffectButton:
+		FourthEffectButton.Push();
+		break;
+	case Buttons::MousePositions::playButton:
+		PlayButtonArea.Push();
+		break;
+	case Buttons::MousePositions::stopButton:
+		StopButtonArea.Push();
+		break;
+	case Buttons::MousePositions::cleanButton:
+		CleanButtonArea.Push();
+		break;
+	case Buttons::MousePositions::rightArrowButton:
+		RightArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::leftArrowButton:
+		LeftArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::upArrowButton:
+		UpArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::downArrowButton:
+		DownArrowButtonArea.Push();
+		break;
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
+}
+
+void Buttons::setOff(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		FirstEffectButton.Release();
+		break;
+	case Buttons::MousePositions::secondEffectButton:
+		SecondEffectButton.Release();
+		break;
+	case Buttons::MousePositions::thirdEffectButton:
+		ThirdEffectButton.Release();
+		break;
+	case Buttons::MousePositions::fourthEffectButton:
+		FourthEffectButton.Release();
+		break;
+	case Buttons::MousePositions::playButton:
+		PlayButtonArea.Release();
+		break;
+	case Buttons::MousePositions::stopButton:
+		StopButtonArea.Release();
+		break;
+	case Buttons::MousePositions::cleanButton:
+		CleanButtonArea.Release();
+		break;
+	case Buttons::MousePositions::rightArrowButton:
+		RightArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::leftArrowButton:
+		LeftArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::upArrowButton:
+		UpArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::downArrowButton:
+		DownArrowButtonArea.Release();
+		break;
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
+}
+
+bool Buttons::getButtonsStatus(Buttons::MousePositions button)
+{
+	switch (button)
+	{
+	case Buttons::MousePositions::firstEffectButton:
+		return FirstEffectButton.getStatus();
+
+	case Buttons::MousePositions::secondEffectButton:
+		return SecondEffectButton.getStatus();
+
+	case Buttons::MousePositions::thirdEffectButton:
+		return ThirdEffectButton.getStatus();
+
+	case Buttons::MousePositions::fourthEffectButton:
+		return FourthEffectButton.getStatus();
+
+	case Buttons::MousePositions::playButton:
+		return PlayButtonArea.getStatus();
+
+	case Buttons::MousePositions::stopButton:
+		return StopButtonArea.getStatus();
+
+	case Buttons::MousePositions::cleanButton:
+		return CleanButtonArea.getStatus();
+
+	case Buttons::MousePositions::rightArrowButton:
+		return RightArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::leftArrowButton:
+		return LeftArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::upArrowButton:
+		return UpArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::downArrowButton:
+		return DownArrowButtonArea.getStatus();
+
+	case Buttons::MousePositions::noneButton:
+	default:
+		break;
+	}
 }

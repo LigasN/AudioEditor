@@ -35,12 +35,12 @@ RectangleButton::RectangleButton(sf::Vector2f size, sf::Vector2f position, sf::C
 
 void RectangleButton::Push()
 {
-	status = 1;
+	status = true;
 }
 
 void RectangleButton::Release()
 {
-	status = 0;
+	status = false;
 }
 
 bool RectangleButton::OnTarget(const sf::Vector2f & sight)
@@ -52,4 +52,9 @@ bool RectangleButton::OnTarget(const sf::Vector2f & sight)
 void RectangleButton::ChangeStatus()
 {
 	status = !status;
+}
+
+bool RectangleButton::getStatus()
+{
+	return status;
 }
