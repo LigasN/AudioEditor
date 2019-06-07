@@ -59,6 +59,7 @@ void AudioEditorManager::updateState()
 			break;
 
 		default:
+
 			assert("Developer's mistake");
 			break;
 		}
