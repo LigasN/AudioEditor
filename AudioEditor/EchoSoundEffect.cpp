@@ -1,7 +1,9 @@
 #include "EchoSoundEffect.h"
+#include <iostream>
 
-EchoSoundEffect::EchoSoundEffect() : delayTime(3), decayFactor(1), parameterOnDisplay(0)
+EchoSoundEffect::EchoSoundEffect() : delayTime(3), decayFactor(1), parameterOnDisplay(0), numberOfParameters(2), effectStatus(false)
 {
+	std::cout << "EchoSoundEffect::EchoSoundEffect() CONSTRUCTOR" << std::endl;
 }
 
 EchoSoundEffect::~EchoSoundEffect()
@@ -10,18 +12,22 @@ EchoSoundEffect::~EchoSoundEffect()
 
 void EchoSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
-	parameterOnDisplay %= 3;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "EchoSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
 	case 0:
 		display->setText(C_TEXTS::TEXT_ID::EffectName, C_TEXTS::TEXT_ID::Echo);
+		break;
 
 	case 1:
 		display->setText(C_TEXTS::TEXT_ID::Delay_time, std::to_wstring(delayTime));
+		break;
 
 	case 2:
 		display->setText(C_TEXTS::TEXT_ID::Decay_factor, std::to_wstring(decayFactor));
+		break;
 
 	default:
 		assert("Error in EchoSoundEffect's parameters sended to display");
@@ -32,7 +38,7 @@ void EchoSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 
 void EchoSoundEffect::IncreaseParameter()
 {
-	parameterOnDisplay %= 3;
+	parameterOnDisplay %= numberOfParameters + 1;
 
 	switch (parameterOnDisplay)
 	{
@@ -54,7 +60,7 @@ void EchoSoundEffect::IncreaseParameter()
 
 void EchoSoundEffect::DecreaseParameter()
 {
-	parameterOnDisplay %= 3;
+	parameterOnDisplay %= numberOfParameters + 1;
 
 	switch (parameterOnDisplay)
 	{
@@ -70,7 +76,7 @@ void EchoSoundEffect::DecreaseParameter()
 
 	case 0:
 	default:
-		assert("Error in TremoloSoundEffect's parameters sended to increase");
+		assert("Error in EchoSoundEffect's parameters sended to increase");
 		break;
 	}
 }
@@ -100,7 +106,34 @@ void EchoSoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned 
 	}
 }
 
+void EchoSoundEffect::NextParameterSettings()
+{
+	parameterOnDisplay++;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "EchoSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
+void EchoSoundEffect::PreviousParameterSettings()
+{
+	if (parameterOnDisplay == 0)
+		parameterOnDisplay = numberOfParameters;
+	else
+		parameterOnDisplay--;
+	std::cout << "EchoSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
 SoundEffect::Effects EchoSoundEffect::GetEffectName()
 {
 	return SoundEffect::Effects::Echo;
+}
+
+unsigned int EchoSoundEffect::GetParameterOnDisplay()
+{
+	return parameterOnDisplay;
+}
+
+void EchoSoundEffect::ChangeEffectStatus()
+{
+	effectStatus = !effectStatus;
+	std::cout << "EchoSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
 }

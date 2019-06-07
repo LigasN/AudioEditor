@@ -145,8 +145,8 @@ void AudioPlayer::setEditedSound(sf::SoundBuffer newEditedSound)
 void AudioPlayer::UpdateEditedSound(const std::shared_ptr<EffectManager>& firstButtonManager, const std::shared_ptr<EffectManager>& secondButtonManager,
 	const std::shared_ptr<EffectManager>& thirdButtonManager, const std::shared_ptr<EffectManager>& fourthButtonManager)
 {
-	firstButtonManager->remakeSound(editedSound);
-	secondButtonManager->remakeSound(editedSound);
-	thirdButtonManager->remakeSound(editedSound);
-	fourthButtonManager->remakeSound(editedSound);
+	editedSound = firstButtonManager->remakeSound(editedSound);
+	editedSound = secondButtonManager->remakeSound(editedSound);
+	editedSound = thirdButtonManager->remakeSound(editedSound);
+	editedSound = fourthButtonManager->remakeSound(editedSound);
 }

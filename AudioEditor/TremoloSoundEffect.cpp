@@ -1,7 +1,10 @@
 #include "TremoloSoundEffect.h"
+#include <iostream>
 
-TremoloSoundEffect::TremoloSoundEffect() : startingPhase(0), wetLevel(100), frequency(3), waveformType(WaveformType::sin), parameterOnDisplay(0)
+TremoloSoundEffect::TremoloSoundEffect() : startingPhase(0), wetLevel(100), frequency(3), waveformType(WaveformType::sin), parameterOnDisplay(0), numberOfParameters(5), effectStatus(false)
 {
+
+	std::cout << "TremoloSoundEffect::TremoloSoundEffect() CONSTRUCTOR" << std::endl; 
 }
 
 TremoloSoundEffect::~TremoloSoundEffect()
@@ -10,7 +13,8 @@ TremoloSoundEffect::~TremoloSoundEffect()
 
 void TremoloSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
-	parameterOnDisplay %= 6;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "TremoloSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -54,17 +58,17 @@ void TremoloSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 
 	case 2:
 
-		display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(startingPhase));
+		display->setText(C_TEXTS::TEXT_ID::startingPhase, std::to_wstring(startingPhase));
 		break;
 
 	case 3:
 
-		display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(wetLevel));
+		display->setText(C_TEXTS::TEXT_ID::wetLevel, std::to_wstring(wetLevel));
 		break;
 
 	case 4:
 
-		display->setText(C_TEXTS::TEXT_ID::Drive, std::to_wstring(frequency));
+		display->setText(C_TEXTS::TEXT_ID::frequency, std::to_wstring(frequency));
 		break;
 
 	default:
@@ -76,7 +80,7 @@ void TremoloSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 
 void TremoloSoundEffect::IncreaseParameter()
 {
-	parameterOnDisplay %= 6;
+	parameterOnDisplay %= numberOfParameters + 1;
 	switch (parameterOnDisplay)
 	{
 	case 1:
@@ -131,7 +135,7 @@ void TremoloSoundEffect::IncreaseParameter()
 
 void TremoloSoundEffect::DecreaseParameter()
 {
-	parameterOnDisplay %= 6;
+	parameterOnDisplay %= numberOfParameters + 1;
 	switch (parameterOnDisplay)
 	{
 	case 1:
@@ -184,12 +188,28 @@ void TremoloSoundEffect::DecreaseParameter()
 	}
 }
 
+void TremoloSoundEffect::NextParameterSettings()
+{
+	parameterOnDisplay++;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "TremoloSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
+void TremoloSoundEffect::PreviousParameterSettings()
+{
+	if (parameterOnDisplay == 0)
+		parameterOnDisplay = numberOfParameters;
+	else
+		parameterOnDisplay--;
+	std::cout << "TremoloSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
 void TremoloSoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned int sampleRate)
 {
 	if (effectStatus == true)
 	{
-		assert(wetLevel > 0 && wetLevel < 100);
-		assert(frequency > 0 && frequency < 20);
+		assert(wetLevel >= 0 && wetLevel <= 100);
+		assert(frequency >= 0 && frequency <= 20);
 		const float pi = (float)3.14159265359;
 		float trem;
 
@@ -238,4 +258,15 @@ void TremoloSoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsign
 SoundEffect::Effects TremoloSoundEffect::GetEffectName()
 {
 	return SoundEffect::Effects::Tremolo;
+}
+
+unsigned int TremoloSoundEffect::GetParameterOnDisplay()
+{
+	return parameterOnDisplay;
+}
+
+void TremoloSoundEffect::ChangeEffectStatus()
+{
+	effectStatus = !effectStatus;
+	std::cout << "TremoloSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
 }

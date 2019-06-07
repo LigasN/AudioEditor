@@ -1,7 +1,9 @@
 #include "DistortionSoundEffect.h"
+#include <iostream>
 
-DistortionSoundEffect::DistortionSoundEffect() : clippingLevel(-10), drive(10), makeUpGain(10), parameterOnDisplay(0)
+DistortionSoundEffect::DistortionSoundEffect() : clippingLevel(-10), drive(10), makeUpGain(10), parameterOnDisplay(0), numberOfParameters(3), effectStatus(false)
 {
+	std::cout << "DistortionSoundEffect::DistortionSoundEffect() CONSTRUCTOR" << std::endl;
 }
 
 DistortionSoundEffect::~DistortionSoundEffect()
@@ -10,7 +12,8 @@ DistortionSoundEffect::~DistortionSoundEffect()
 
 void DistortionSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
-	parameterOnDisplay %= 4;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "DistortionSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -34,12 +37,13 @@ void DistortionSoundEffect::ParamDisplay(const std::shared_ptr <Display> & displ
 		assert("Error in DistortionSoundEffect's parameters sended to display");
 		break;
 	}
+	std::cout << "DistortionSoundEffect::ParamDisplay()" << parameterOnDisplay << "\t should be displayed" << std::endl;
 
 }
 
 void DistortionSoundEffect::IncreaseParameter()
 {
-	parameterOnDisplay %= 4;
+	parameterOnDisplay %= numberOfParameters + 1;
 
 	switch (parameterOnDisplay)
 	{
@@ -145,7 +149,34 @@ void DistortionSoundEffect::makeEffect(std::vector <sf::Int16> & soundSamples, u
 	}
 }
 
+void DistortionSoundEffect::NextParameterSettings()
+{
+	parameterOnDisplay++;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "DistortionSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
+void DistortionSoundEffect::PreviousParameterSettings()
+{
+	if (parameterOnDisplay == 0)
+		parameterOnDisplay = numberOfParameters;
+	else
+		parameterOnDisplay--;
+	std::cout << "DistortionSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
 SoundEffect::Effects DistortionSoundEffect::GetEffectName()
 {
 	return SoundEffect::Effects::Distortion;
+}
+
+unsigned int DistortionSoundEffect::GetParameterOnDisplay()
+{
+	return parameterOnDisplay;
+}
+
+void DistortionSoundEffect::ChangeEffectStatus()
+{
+	effectStatus = !effectStatus;
+	std::cout << "DistortionSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
 }

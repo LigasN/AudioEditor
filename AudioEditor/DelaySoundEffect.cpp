@@ -1,7 +1,9 @@
 #include "DelaySoundEffect.h"
+#include <iostream>
 
-DelaySoundEffect::DelaySoundEffect() : SoundEffect(), delayLevelPerEcho(1), delayTime(1), pitchChangeEffect(1.5), pitchChangePerEcho(1.5), numberOfEchoes(5), parameterOnDisplay(0)
+DelaySoundEffect::DelaySoundEffect() : SoundEffect(), delayLevelPerEcho(1), delayTime(1), pitchChangeEffect(1.5), pitchChangePerEcho(1.5), numberOfEchoes(5), parameterOnDisplay(0), numberOfParameters(5), effectStatus(false)
 {
+	std::cout << "DelaySoundEffect::DelaySoundEffect() CONSTRUCTOR" << std::endl;
 }
 
 DelaySoundEffect::~DelaySoundEffect()
@@ -13,7 +15,7 @@ void DelaySoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned
 	if (effectStatus == true)
 	{
 		assert(delayTime > 0);
-		assert(pitchChangePerEcho > 0);
+		assert(pitchChangePerEcho > 0.0);
 		assert(numberOfEchoes >= 0);
 		assert(pitchChangeEffect > 0);
 
@@ -27,9 +29,9 @@ void DelaySoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned
 			{
 				if (j > delay * i)
 				{
-					if ((j - delay * i) * pitchChangeEffect * pitchChangePerEcho < effectSamples.size())
+					if ((j - delay * i) * (unsigned int)(pitchChangeEffect * pow(pitchChangePerEcho, i)) < effectSamples.size())
 					{
-						soundSamples[j] += effectSamples[(j - delay * i) * (unsigned int)(pitchChangeEffect * pow(pitchChangePerEcho, i))] * (sf::Uint16)(pow(delayLevelPerEcho, i));
+						soundSamples[j] += effectSamples[(j - delay * i) * (unsigned int)(pitchChangeEffect * pow(pitchChangePerEcho, i))] * (pow(delayLevelPerEcho, i));
 					}
 
 					else
@@ -44,8 +46,8 @@ void DelaySoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned
 
 void DelaySoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
-	parameterOnDisplay %= 6;
-
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "DelaySoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 	switch (parameterOnDisplay)
 	{
 	case 0:
@@ -86,7 +88,9 @@ void DelaySoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 
 void DelaySoundEffect::IncreaseParameter()
 {
-	parameterOnDisplay %= 6;
+	parameterOnDisplay %= numberOfParameters + 1;
+
+	std::cout << "DelaySoundEffect::ParamDisplay  paramOnDisplay: \t" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -119,7 +123,7 @@ void DelaySoundEffect::IncreaseParameter()
 
 void DelaySoundEffect::DecreaseParameter()
 {
-	parameterOnDisplay %= 6;
+	parameterOnDisplay %= numberOfParameters + 1;
 
 	switch (parameterOnDisplay)
 	{
@@ -154,7 +158,34 @@ void DelaySoundEffect::DecreaseParameter()
 	}
 }
 
+void DelaySoundEffect::NextParameterSettings()
+{
+	parameterOnDisplay++;
+	parameterOnDisplay %= numberOfParameters + 1;
+	std::cout << "DelaySoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
+void DelaySoundEffect::PreviousParameterSettings()
+{
+	if (parameterOnDisplay == 0)
+		parameterOnDisplay = numberOfParameters;
+	else
+		parameterOnDisplay--;
+	std::cout << "DelaySoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
+}
+
 SoundEffect::Effects DelaySoundEffect::GetEffectName()
 {
 	return SoundEffect::Effects::Delay;
+}
+
+unsigned int DelaySoundEffect::GetParameterOnDisplay()
+{
+	return parameterOnDisplay;
+}
+
+void DelaySoundEffect::ChangeEffectStatus()
+{
+	effectStatus = !effectStatus;
+	std::cout << "SoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
 }

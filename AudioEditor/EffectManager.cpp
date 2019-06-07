@@ -2,7 +2,7 @@
 #include <iostream>
 
 EffectManager::EffectManager() : delaySoundEffect( std::make_shared < DelaySoundEffect > ()), distortionSoundEffect(std::make_shared < DistortionSoundEffect >()), 
-echoSoundEffect(std::make_shared < EchoSoundEffect >()), tremoloSoundEffect(std::make_shared < TremoloSoundEffect >()), effect(std::make_shared < DelaySoundEffect >())
+echoSoundEffect(std::make_shared < EchoSoundEffect >()), tremoloSoundEffect(std::make_shared < TremoloSoundEffect >()), effect(std::make_shared < TremoloSoundEffect >())
 {
 }
 
@@ -33,6 +33,10 @@ void EffectManager::setEffect(SoundEffect::Effects effectName)
 
 		this->effect = tremoloSoundEffect;
 		break;
+
+	default:
+		assert("Error with setting effect");
+
 	}
 }
 
@@ -49,6 +53,7 @@ void EffectManager::DisplayParameters(const std::shared_ptr<Display>& display)
 void EffectManager::NextParameterSettings()
 {
 	effect->NextParameterSettings();
+	std::cout << "ParameterOndisplay EffectManager::NextParameterSettings() " << effect->GetParameterOnDisplay() << std::endl;
 }
 
 void EffectManager::PreviousParameterSettings()
@@ -58,7 +63,7 @@ void EffectManager::PreviousParameterSettings()
 
 void EffectManager::IncreaseParameter()
 {
-	if(effect->GetParameterOnDisplay() == 0)
+	if (effect->GetParameterOnDisplay() == 0)
 	{
 		switch (effect->GetEffectName())
 		{
@@ -66,25 +71,32 @@ void EffectManager::IncreaseParameter()
 			setEffect(SoundEffect::Effects::Delay);
 			std::cout << "setted delay" << std::endl;
 			break;
+
 		case SoundEffect::Effects::Delay:
 			setEffect(SoundEffect::Effects::Tremolo);
 			std::cout << "setted Tremolo" << std::endl;
 			break;
+
 		case SoundEffect::Effects::Tremolo:
 			setEffect(SoundEffect::Effects::Echo);
 			std::cout << "setted Echo" << std::endl;
 			break;
+
 		case SoundEffect::Effects::Echo:
 			setEffect(SoundEffect::Effects::Distortion);
 			std::cout << "setted Distortion" << std::endl;
 			break;
+
 		default:
 			assert("Developer error in effect manager with increasing 0 parameter");
 			break;
 		}
 	}
-	else 
-	effect->IncreaseParameter();
+
+	else
+	{
+		effect->IncreaseParameter();
+	}
 }
 
 void EffectManager::DecreaseParameter()

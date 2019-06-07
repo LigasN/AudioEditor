@@ -1,7 +1,9 @@
 #include "SoundEffect.h"
+#include <iostream>
 
-SoundEffect::SoundEffect() : parameterOnDisplay(0), effectStatus(false)
+SoundEffect::SoundEffect()
 {
+	std::cout << "Construktor SoundEffect" << std::endl;
 }
 
 SoundEffect::~SoundEffect()
@@ -38,22 +40,3 @@ void SoundEffect::DisplayParameters(const std::shared_ptr<Display>& display)
 	ParamDisplay(display);
 }
 
-void SoundEffect::NextParameterSettings()
-{
-	parameterOnDisplay++;
-}
-
-void SoundEffect::PreviousParameterSettings()
-{
-	parameterOnDisplay--;
-}
-
-void SoundEffect::ChangeEffectStatus()
-{
-	effectStatus = !effectStatus;
-}
-
-unsigned int SoundEffect::GetParameterOnDisplay()
-{
-	return parameterOnDisplay;
-}
