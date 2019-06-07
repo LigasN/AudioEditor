@@ -7,7 +7,18 @@
 class AudioPlayer : public AudioEditorState
 {
 private:
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// Private variable in AudioPlayer class
+	///
+	/// Aim: Stores information about working state. If true we are saving file right now.
+	///
+	/// Type: Boolean
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
 	bool savingState;
+
 	sf::SoundBuffer cleanSound;
 	sf::SoundBuffer editedSound;
 	sf::Sound playingSound;
