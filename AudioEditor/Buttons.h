@@ -39,7 +39,7 @@ private:
 	///
 	/// Aim: Stores size of effect button
 	///
-	/// Type: sf::RectangleShape
+	/// Type: const sf::Vector2f
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	const sf::Vector2f effectButtonSize = sf::Vector2f(152.f, 240.f);
@@ -165,11 +165,21 @@ private:
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	ConvexButton DownArrowButtonArea;
 
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// Private variable in Buttons class
+	///
+	/// Aim: Stores pointer to sf::Window which helps get proper coordinates of mouse.
+	///
+	/// Type: const std::shared_ptr <sf::Window> 
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////
 	const std::shared_ptr <sf::Window> relativeTo;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Function in Buttons class
+	/// Private virtual const override function in Buttons class
 	///
 	/// Aim: Draw button if status is true
 	///
@@ -209,6 +219,7 @@ private:
 	std::vector<sf::Vector2f> triangularPoints = { sf::Vector2f(-56.f, 0.f), sf::Vector2f(56.f, 64.5f),
 		sf::Vector2f(56.f, -64.5f) };
 
+
 public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,7 +231,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Parametrical cestructor in Buttons class
+	/// Parametrical constructor in Buttons class
 	///
 	///	Arguments: const std::shared_ptr <sf::Window>
 	///
@@ -256,7 +267,7 @@ public:
 	///
 	/// Aim: Update status of Buttons and return named position of mouse
 	///
-	/// Arguments: const sf::Window
+	/// Arguments: void
 	///
 	/// Returns: Buttons::MousePositions
 	///
@@ -293,14 +304,12 @@ public:
 	///
 	/// Function in Buttons class
 	///
-	/// Aim: get status of proper button (on/off) true if on.
+	/// Aim: Returns status of proper button (on/off) true if on.
 	///
 	/// Arguments: Buttons::MousePositions
 	///
-	/// Returns: void
+	/// Returns: Boolean
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	bool getButtonsStatus(Buttons::MousePositions button);
-
-
 };

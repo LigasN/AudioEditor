@@ -224,4 +224,6 @@ bool Buttons::getButtonsStatus(Buttons::MousePositions button)
 	default:
 		break;
 	}
+	assert("nothing is returned in Buttons function with buttons statuses.");
+	return false;
 }

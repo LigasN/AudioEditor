@@ -15,6 +15,10 @@
 ///
 /// Aim: Add delay to sound
 ///
+/// Inherits in public relations from SoundEffect
+///
+///	Children of strategy design pattern
+///
 ///////////////////////////////////////////////////////////////////////////////////////////////
 class DelaySoundEffect : public SoundEffect
 {
@@ -138,7 +142,7 @@ public:
 	/// Returns: void
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void ChangeEffectStatus() override;
+	virtual void UpdateEffectStatus(bool buttonStatus) override;
 
 private:
 

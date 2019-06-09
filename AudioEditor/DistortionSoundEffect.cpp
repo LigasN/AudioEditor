@@ -1,9 +1,7 @@
 #include "DistortionSoundEffect.h"
-#include <iostream>
 
 DistortionSoundEffect::DistortionSoundEffect() : clippingLevel(-10), drive(10), makeUpGain(10), parameterOnDisplay(0), numberOfParameters(3), effectStatus(false)
 {
-	std::cout << "DistortionSoundEffect::DistortionSoundEffect() CONSTRUCTOR" << std::endl;
 }
 
 DistortionSoundEffect::~DistortionSoundEffect()
@@ -13,7 +11,6 @@ DistortionSoundEffect::~DistortionSoundEffect()
 void DistortionSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "DistortionSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -37,7 +34,6 @@ void DistortionSoundEffect::ParamDisplay(const std::shared_ptr <Display> & displ
 		assert("Error in DistortionSoundEffect's parameters sended to display");
 		break;
 	}
-	std::cout << "DistortionSoundEffect::ParamDisplay()" << parameterOnDisplay << "\t should be displayed" << std::endl;
 
 }
 
@@ -83,11 +79,15 @@ void DistortionSoundEffect::DecreaseParameter()
 	case 2:
 		if (drive > 0)
 			drive--;
+		else
+			drive = 100;
 		break;
 
 	case 3:
 		if (makeUpGain > 0)
 			makeUpGain--;
+		else
+			makeUpGain = 100;
 		break;
 
 	case 0:
@@ -153,7 +153,6 @@ void DistortionSoundEffect::NextParameterSettings()
 {
 	parameterOnDisplay++;
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "DistortionSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 void DistortionSoundEffect::PreviousParameterSettings()
@@ -162,7 +161,6 @@ void DistortionSoundEffect::PreviousParameterSettings()
 		parameterOnDisplay = numberOfParameters;
 	else
 		parameterOnDisplay--;
-	std::cout << "DistortionSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 SoundEffect::Effects DistortionSoundEffect::GetEffectName()
@@ -175,8 +173,17 @@ unsigned int DistortionSoundEffect::GetParameterOnDisplay()
 	return parameterOnDisplay;
 }
 
-void DistortionSoundEffect::ChangeEffectStatus()
+void DistortionSoundEffect::UpdateEffectStatus(bool buttonStatus)
 {
-	effectStatus = !effectStatus;
-	std::cout << "DistortionSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
+	switch (buttonStatus)
+	{
+	case true:
+		effectStatus = true;
+		break;
+
+	case false:
+		effectStatus = false;
+		break;
+
+	}
 }

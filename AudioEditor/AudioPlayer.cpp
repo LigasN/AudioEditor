@@ -3,7 +3,7 @@
 AudioPlayer::AudioPlayer(const std::shared_ptr<Display>& display) : AudioEditorState(display)
 {
 	sf::SoundBuffer buffer;
-	buffer.loadFromFile("Gitara.wav");
+	buffer.loadFromFile("TestSound.wav");
 	editedSound = cleanSound = buffer;
 }
 
@@ -36,9 +36,9 @@ void AudioPlayer::DecreaseParameter()
 	assert("AudioPlayer trying cause DecreaseParameter");
 }
 
-void AudioPlayer::ChangeEffectStatus()
+void AudioPlayer::UpdateEffectStatus(bool buttonStatus)
 {
-	assert("AudioPlayer trying cause ChangeEffectStatus");
+	assert("AudioPlayer trying cause UpdateEffectStatus");
 }
 
 void AudioPlayer::UpdateDisplay()
@@ -145,6 +145,7 @@ void AudioPlayer::setEditedSound(sf::SoundBuffer newEditedSound)
 void AudioPlayer::UpdateEditedSound(const std::shared_ptr<EffectManager>& firstButtonManager, const std::shared_ptr<EffectManager>& secondButtonManager,
 	const std::shared_ptr<EffectManager>& thirdButtonManager, const std::shared_ptr<EffectManager>& fourthButtonManager)
 {
+	editedSound = cleanSound;
 	editedSound = firstButtonManager->remakeSound(editedSound);
 	editedSound = secondButtonManager->remakeSound(editedSound);
 	editedSound = thirdButtonManager->remakeSound(editedSound);

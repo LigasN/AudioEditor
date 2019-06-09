@@ -13,6 +13,7 @@
 #include "TremoloSoundEffect.h"
 #include "SFML/Audio.hpp"
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///
 /// EffectManager class	
@@ -28,9 +29,9 @@ private:
 	///
 	/// Private variable in EffectManager class
 	///
-	/// Aim: Pointer to current effect
+	/// Aim: Stores pointer to effect which being used at the moment
 	///
-	/// Type: std::shared_ptr <SoundEffect>
+	/// Type: std::shared_ptr <SoundEffect> 
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	std::shared_ptr <SoundEffect> effect;
@@ -130,7 +131,7 @@ public:
 	///
 	/// Aim: Displays proper parameter of effect settings on screen
 	///
-	/// Arguments: const std::shared_ptr <Display> & display
+	/// Arguments: const std::shared_ptr <Display> &
 	///
 	/// Returns: void
 	///
@@ -200,7 +201,7 @@ public:
 	/// Returns: void
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	void ChangeEffectStatus();
+	void UpdateEffectStatus(bool buttonStatus);
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///

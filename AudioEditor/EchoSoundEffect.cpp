@@ -1,9 +1,7 @@
 #include "EchoSoundEffect.h"
-#include <iostream>
 
 EchoSoundEffect::EchoSoundEffect() : delayTime(3), decayFactor(1), parameterOnDisplay(0), numberOfParameters(2), effectStatus(false)
 {
-	std::cout << "EchoSoundEffect::EchoSoundEffect() CONSTRUCTOR" << std::endl;
 }
 
 EchoSoundEffect::~EchoSoundEffect()
@@ -13,7 +11,6 @@ EchoSoundEffect::~EchoSoundEffect()
 void EchoSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "EchoSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -46,8 +43,8 @@ void EchoSoundEffect::IncreaseParameter()
 		delayTime++;
 		break;
 
-	case 3:
-		decayFactor++;
+	case 2:
+		decayFactor += 0.1f;
 		decayFactor = remainderf(decayFactor, 100);
 		break;
 
@@ -67,11 +64,15 @@ void EchoSoundEffect::DecreaseParameter()
 	case 1:
 		if (delayTime > 1)
 			delayTime--;
+		else
+			delayTime = 5;
 		break;
 
 	case 2:
-		if (decayFactor > 1)
-			decayFactor--;
+		if (decayFactor == 0)
+			decayFactor = 10;
+		else
+			decayFactor -= 0.1f;
 		break;
 
 	case 0:
@@ -85,8 +86,8 @@ void EchoSoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned 
 {
 	if (effectStatus == true)
 	{
-		assert(delayTime > 0);
-		assert(decayFactor > 0 || decayFactor < 10);
+		assert(delayTime >= 0);
+		assert(decayFactor >= 0 || decayFactor <= 10);
 
 		int delay = sampleRate * delayTime;
 		int repetition = soundSamples.size() / delay;
@@ -110,7 +111,6 @@ void EchoSoundEffect::NextParameterSettings()
 {
 	parameterOnDisplay++;
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "EchoSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 void EchoSoundEffect::PreviousParameterSettings()
@@ -119,7 +119,6 @@ void EchoSoundEffect::PreviousParameterSettings()
 		parameterOnDisplay = numberOfParameters;
 	else
 		parameterOnDisplay--;
-	std::cout << "EchoSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 SoundEffect::Effects EchoSoundEffect::GetEffectName()
@@ -132,8 +131,16 @@ unsigned int EchoSoundEffect::GetParameterOnDisplay()
 	return parameterOnDisplay;
 }
 
-void EchoSoundEffect::ChangeEffectStatus()
+void EchoSoundEffect::UpdateEffectStatus(bool buttonStatus)
 {
-	effectStatus = !effectStatus;
-	std::cout << "EchoSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
+	switch (buttonStatus)
+	{
+	case true:
+		effectStatus = true;
+		break;
+
+	case false:
+		effectStatus = false;
+		break;
+	}
 }
