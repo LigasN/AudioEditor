@@ -24,6 +24,8 @@
 ///
 /// Aim: Control display view on program. Displays text on particular area
 ///
+/// Inherits in public relation from sf::Drawable
+///
 ///////////////////////////////////////////////////////////////////////////////////////////////
 class Display : public sf::Drawable
 {
@@ -51,7 +53,7 @@ private:
 	///
 	/// Aim: Stores area of the display
 	///
-	/// Type: RectangleShape
+	/// Type: sf::RectangleShape
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	sf::RectangleShape display;
@@ -198,8 +200,8 @@ public:
 	///
 	/// Aim: Set text from C_TEXTS class and number ( like text : 0 ) on display
 	///
-	/// Arguments:	-C_TEXTS::TEXT_ID			- id of text
-	///				-const double				- number
+	/// Arguments:	-const C_TEXTS::TEXT_ID		- id of text
+	///				-const std::wstring			- value of wariable from text
 	///
 	/// Returns: void
 	///
@@ -219,5 +221,4 @@ public:
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	void setText(const C_TEXTS::TEXT_ID textID1, const C_TEXTS::TEXT_ID textID2);
-
 };

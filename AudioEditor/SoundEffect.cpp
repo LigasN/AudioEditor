@@ -1,9 +1,7 @@
 #include "SoundEffect.h"
-#include <iostream>
 
 SoundEffect::SoundEffect()
 {
-	std::cout << "Construktor SoundEffect" << std::endl;
 }
 
 SoundEffect::~SoundEffect()
@@ -22,7 +20,7 @@ sf::SoundBuffer SoundEffect::remakeSound(sf::SoundBuffer & sound)
 
 	sf::Int16 * soundSamplesTab = new sf::Int16[soundSamples.size()];
 
-	for (int i{}; i < soundSamples.size(); i++) {
+	for (unsigned int i{}; i < soundSamples.size(); i++) {
 		soundSamplesTab[i] = soundSamples[i];
 	}
 

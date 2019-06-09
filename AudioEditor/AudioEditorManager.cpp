@@ -1,5 +1,4 @@
 #include "AudioEditorManager.h"
-#include <iostream>
 
 AudioEditorManager::AudioEditorManager(const std::shared_ptr <Display> & display, const std::shared_ptr <Buttons> & buttons) : display(display), buttons(buttons),
 firstButtonEffect(std::make_shared <FirstButtonEffect>(display)), secondButtonEffect(std::make_shared <SecondButtonEffect>(display)),
@@ -14,8 +13,6 @@ AudioEditorManager::~AudioEditorManager()
 
 void AudioEditorManager::updateState()
 {
-	std::cout << "Update STate()" << std::endl;
-	std::cout << (int)currentState->getStateName() << std::endl;
 	Buttons::MousePositions clickedButton = buttons->ButtonUpdate();
 
 	buttons->setOff(Buttons::MousePositions::stopButton);
@@ -30,7 +27,6 @@ void AudioEditorManager::updateState()
 
 		buttons->setOff(Buttons::MousePositions::cleanButton);
 
-		std::cout << "getStateName()" << std::endl;
 		switch (currentState->getStateName())
 		{
 		case AudioEditorState::States::FirstButtonEffect:
@@ -41,14 +37,9 @@ void AudioEditorManager::updateState()
 
 			currentState = audioPlayer;
 
-			std::cout << "currentState = audioPlayer;" << std::endl;
-			std::cout << (int)currentState->getStateName() << std::endl;
-
 		case AudioEditorState::States::Player:
 
-			std::cout << "audioPlayer->UpdateEditedSound();\tAudioEditorManager::updateState() " << std::endl;
 			audioPlayer->UpdateEditedSound(firstButtonEffect->getEffectManager(), secondButtonEffect->getEffectManager(), thirdButtonEffect->getEffectManager(), fourthButtonEffect->getEffectManager());
-			std::cout << "sound updated" << std::endl;
 			audioPlayer->Play();
 
 			if (audioPlayer->GetStatus() == true)
@@ -246,7 +237,6 @@ void AudioEditorManager::updateState()
 			assert("Developer's mistake");
 			break;
 		}
-		std::cout << "AUDIOEDITOREFFECTMANAGER OUT OF CASE" << std::endl;
 		break;
 
 	case Buttons::MousePositions::firstEffectButton:
@@ -272,7 +262,7 @@ void AudioEditorManager::updateState()
 			assert("Developer's mistake");
 			break;
 		}
-		currentState->ChangeEffectStatus();
+		currentState->UpdateEffectStatus(buttons->getButtonsStatus(Buttons::MousePositions::firstEffectButton));
 
 		break;
 
@@ -299,7 +289,7 @@ void AudioEditorManager::updateState()
 			assert("Developer's mistake");
 			break;
 		}
-		currentState->ChangeEffectStatus();
+		currentState->UpdateEffectStatus(buttons->getButtonsStatus(Buttons::MousePositions::secondEffectButton));
 
 		break;
 
@@ -326,7 +316,7 @@ void AudioEditorManager::updateState()
 			assert("Developer's mistake");
 			break;
 		}
-		currentState->ChangeEffectStatus();
+		currentState->UpdateEffectStatus(buttons->getButtonsStatus(Buttons::MousePositions::thirdEffectButton));
 
 		break;
 
@@ -353,7 +343,7 @@ void AudioEditorManager::updateState()
 			assert("Developer's mistake");
 			break;
 		}
-		currentState->ChangeEffectStatus();
+		currentState->UpdateEffectStatus(buttons->getButtonsStatus(Buttons::MousePositions::fourthEffectButton));
 
 		break;
 

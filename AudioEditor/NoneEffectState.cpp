@@ -1,5 +1,4 @@
 #include "NoneEffectState.h"
-#include <iostream>
 
 NoneEffectState::NoneEffectState(const std::shared_ptr <Display> & display) : AudioEditorState(display)
 {
@@ -41,9 +40,9 @@ void NoneEffectState::DecreaseParameter()
 	assert("NoneEffectState trying cause DecreaseParameter");
 }
 
-void NoneEffectState::ChangeEffectStatus()
+void NoneEffectState::UpdateEffectStatus(bool buttonStatus)
 {
-	assert("NoneEffectState trying cause ChangeEffectStatus");
+	assert("NoneEffectState trying cause UpdateEffectStatus");
 }
 
 void NoneEffectState::UpdateDisplay()

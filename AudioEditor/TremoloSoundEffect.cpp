@@ -1,10 +1,7 @@
 #include "TremoloSoundEffect.h"
-#include <iostream>
 
-TremoloSoundEffect::TremoloSoundEffect() : startingPhase(0), wetLevel(100), frequency(3), waveformType(WaveformType::sin), parameterOnDisplay(0), numberOfParameters(5), effectStatus(false)
+TremoloSoundEffect::TremoloSoundEffect() : startingPhase(0), wetLevel(100), frequency(3), waveformType(WaveformType::sin), parameterOnDisplay(0), numberOfParameters(4), effectStatus(false)
 {
-
-	std::cout << "TremoloSoundEffect::TremoloSoundEffect() CONSTRUCTOR" << std::endl; 
 }
 
 TremoloSoundEffect::~TremoloSoundEffect()
@@ -14,7 +11,6 @@ TremoloSoundEffect::~TremoloSoundEffect()
 void TremoloSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 {
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "TremoloSoundEffect::ParamDisplay(" << parameterOnDisplay << std::endl;
 
 	switch (parameterOnDisplay)
 	{
@@ -55,6 +51,7 @@ void TremoloSoundEffect::ParamDisplay(const std::shared_ptr <Display> & display)
 			assert("Error in TremoloSoundEffect's parameters sended to display");
 			break;
 		}
+		break;
 
 	case 2:
 
@@ -172,12 +169,16 @@ void TremoloSoundEffect::DecreaseParameter()
 		break;
 
 	case 3:
-		if (wetLevel > 1)
+		if (wetLevel == 0)
+			wetLevel = 100;
+		else
 			wetLevel--;
 		break;
 
 	case 4:
-		if (frequency > 1)
+		if (frequency == 0)
+			frequency = 20;
+		else
 			frequency--;
 		break;
 
@@ -192,7 +193,6 @@ void TremoloSoundEffect::NextParameterSettings()
 {
 	parameterOnDisplay++;
 	parameterOnDisplay %= numberOfParameters + 1;
-	std::cout << "TremoloSoundEffect::NextParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 void TremoloSoundEffect::PreviousParameterSettings()
@@ -201,7 +201,6 @@ void TremoloSoundEffect::PreviousParameterSettings()
 		parameterOnDisplay = numberOfParameters;
 	else
 		parameterOnDisplay--;
-	std::cout << "TremoloSoundEffect::PreviousParameterSettings():\t" << parameterOnDisplay << std::endl;
 }
 
 void TremoloSoundEffect::makeEffect(std::vector<sf::Int16>& soundSamples, unsigned int sampleRate)
@@ -265,8 +264,16 @@ unsigned int TremoloSoundEffect::GetParameterOnDisplay()
 	return parameterOnDisplay;
 }
 
-void TremoloSoundEffect::ChangeEffectStatus()
+void TremoloSoundEffect::UpdateEffectStatus(bool buttonStatus)
 {
-	effectStatus = !effectStatus;
-	std::cout << "TremoloSoundEffect::ChangeEffectStatus():\t" << effectStatus << std::endl;
+	switch (buttonStatus)
+	{
+	case true:
+		effectStatus = true;
+		break;
+
+	case false:
+		effectStatus = false;
+		break;
+	}
 }

@@ -1,10 +1,10 @@
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// HEADERS
-//
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// HEADERS
+///
+///////////////////////////////////////////////////////////////////////////////////////////////
 #include <SFML/Graphics.hpp>
 #include <assert.h>
 
@@ -32,7 +32,7 @@ private:
 	///
 	/// Aim: Stores area of the button
 	///
-	/// Type: sf::RectangleShape
+	/// Type: sf::ConvexShape
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	sf::ConvexShape shape;
@@ -50,7 +50,7 @@ private:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Function in ConvexButton class
+	/// Private virtual const override function in ConvexButton class
 	///
 	/// Aim: Draw button if status is true
 	///
@@ -60,6 +60,7 @@ private:
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const override;
+
 
 public:
 
@@ -86,7 +87,7 @@ public:
 	/// Aim: Set all parametrs as wanted
 	///
 	/// Arguments:	-sf::ConvexShape	-shape of button(most important is size of button and position)
-	///		-bool			-status of button (true if pushed)
+	///				-bool			-status of button (true if pushed)
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	ConvexButton(sf::ConvexShape shape, bool status);
@@ -98,11 +99,11 @@ public:
 	///
 	/// Aim: Set all parametrs as wanted
 	///
-	/// Arguments:	-sf::Vector2f		-position of button (origin of button is on the middle) 
-	///		-sf::Color			-color of shining button
-	///		-float			-rotation of button
-	///		-std::vector<float>			-points of shape
-	///		-bool			-status of button (true if pushed)
+	/// Arguments:	-sf::Vector2f			-position of button (origin of button is on the middle) 
+	///				-sf::Color				-color of shining button
+	///				-float					-rotation of button
+	///				-std::vector<float>		-points of shape
+	///				-bool					-status of button (true if pushed)
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	ConvexButton(sf::Vector2f position, sf::Color color, float rotation, std::vector<sf::Vector2f> points, bool status);
@@ -163,7 +164,7 @@ public:
 	///
 	/// Function in ConvexButton class
 	///
-	/// Aim: returns status of button
+	/// Aim: Returns status of button
 	///
 	/// Arguments: void
 	///

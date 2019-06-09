@@ -121,11 +121,12 @@ void Display::setText(const C_TEXTS::TEXT_ID textID)
 	bool ready{};
 	do
 	{
+
 		if (text.getLocalBounds().width > display.getLocalBounds().width - 10)
 		{
 			text.setCharacterSize(text.getCharacterSize() - 1);
 		}
-		else if (text.getLocalBounds().width < display.getLocalBounds().width - 30)
+		else if (text.getLocalBounds().width < display.getLocalBounds().width - 40)
 		{
 			text.setCharacterSize(text.getCharacterSize() + 1);
 		}
@@ -148,7 +149,7 @@ void Display::setText(const C_TEXTS::TEXT_ID textID, const std::wstring value)
 		{
 			text.setCharacterSize(text.getCharacterSize() - 1);
 		}
-		else if (text.getLocalBounds().width < display.getLocalBounds().width - 30)
+		else if (text.getLocalBounds().width < display.getLocalBounds().width - 40)
 		{
 			text.setCharacterSize(text.getCharacterSize() + 1);
 		}
@@ -171,7 +172,7 @@ void Display::setText(const C_TEXTS::TEXT_ID textID1, const C_TEXTS::TEXT_ID tex
 		{
 			text.setCharacterSize(text.getCharacterSize() - 1);
 		}
-		else if (text.getLocalBounds().width < display.getLocalBounds().width - 30)
+		else if (text.getLocalBounds().width < display.getLocalBounds().width - 40)
 		{
 			text.setCharacterSize(text.getCharacterSize() + 1);
 		}

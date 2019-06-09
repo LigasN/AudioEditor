@@ -10,13 +10,14 @@
 #include <assert.h>
 #include <math.h>
 #include "Display.h"
-//#include "EffectManager.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///
 /// SoundEffect class
 ///
 /// Aim: Parent for Effect's classes.
+///
+/// Base class for Strategy design pattern
 ///
 ///////////////////////////////////////////////////////////////////////////////////////////////
 class SoundEffect
@@ -25,7 +26,7 @@ private:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: inner function to edit sound with effect
 	///
@@ -39,7 +40,7 @@ private:
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: Displays parameter's settings on screen
 	///
@@ -98,7 +99,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual function in SoundEffect class
 	///
 	/// Aim: Displays parameter's settings on screen
 	///
@@ -111,7 +112,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: change parameter on setting by increasing parameterOnDisplay variable
 	///
@@ -124,7 +125,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: change parameter on setting by decreasing parameterOnDisplay variable
 	///
@@ -137,7 +138,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: Increase proper  parameter
 	///
@@ -150,7 +151,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: Decrease proper parameter
 	///
@@ -163,7 +164,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: Changes effect status to opposite by changing effectStatus variable
 	///
@@ -172,11 +173,11 @@ public:
 	/// Returns: void
 	///
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void ChangeEffectStatus() = 0;
+	virtual void UpdateEffectStatus(bool buttonStatus) = 0;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: returns variable parameterOnDisplay
 	///
@@ -189,7 +190,7 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	///
-	/// Virtual zero function in SoundEffect class
+	/// Virtual abstract function in SoundEffect class
 	///
 	/// Aim: Returns names of effects
 	///

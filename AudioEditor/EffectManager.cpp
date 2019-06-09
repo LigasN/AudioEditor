@@ -1,5 +1,4 @@
 #include "EffectManager.h"
-#include <iostream>
 
 EffectManager::EffectManager() : delaySoundEffect( std::make_shared < DelaySoundEffect > ()), distortionSoundEffect(std::make_shared < DistortionSoundEffect >()), 
 echoSoundEffect(std::make_shared < EchoSoundEffect >()), tremoloSoundEffect(std::make_shared < TremoloSoundEffect >()), effect(std::make_shared < TremoloSoundEffect >())
@@ -53,7 +52,6 @@ void EffectManager::DisplayParameters(const std::shared_ptr<Display>& display)
 void EffectManager::NextParameterSettings()
 {
 	effect->NextParameterSettings();
-	std::cout << "ParameterOndisplay EffectManager::NextParameterSettings() " << effect->GetParameterOnDisplay() << std::endl;
 }
 
 void EffectManager::PreviousParameterSettings()
@@ -69,22 +67,18 @@ void EffectManager::IncreaseParameter()
 		{
 		case SoundEffect::Effects::Distortion:
 			setEffect(SoundEffect::Effects::Delay);
-			std::cout << "setted delay" << std::endl;
 			break;
 
 		case SoundEffect::Effects::Delay:
 			setEffect(SoundEffect::Effects::Tremolo);
-			std::cout << "setted Tremolo" << std::endl;
 			break;
 
 		case SoundEffect::Effects::Tremolo:
 			setEffect(SoundEffect::Effects::Echo);
-			std::cout << "setted Echo" << std::endl;
 			break;
 
 		case SoundEffect::Effects::Echo:
 			setEffect(SoundEffect::Effects::Distortion);
-			std::cout << "setted Distortion" << std::endl;
 			break;
 
 		default:
@@ -107,19 +101,15 @@ void EffectManager::DecreaseParameter()
 		{
 		case SoundEffect::Effects::Distortion:
 			setEffect(SoundEffect::Effects::Echo);
-			std::cout << "setted Echo" << std::endl;
 			break;
 		case SoundEffect::Effects::Delay:
 			setEffect(SoundEffect::Effects::Distortion);
-			std::cout << "setted Distortion" << std::endl;
 			break;
 		case SoundEffect::Effects::Tremolo:
 			setEffect(SoundEffect::Effects::Delay);
-			std::cout << "setted Delay" << std::endl;
 			break;
 		case SoundEffect::Effects::Echo:
 			setEffect(SoundEffect::Effects::Tremolo);
-			std::cout << "setted Tremolo" << std::endl;
 			break;
 		default:
 			assert("Developer error in effect manager with increasing 0 parameter");
@@ -129,9 +119,9 @@ void EffectManager::DecreaseParameter()
 	else effect->DecreaseParameter();
 }
 
-void EffectManager::ChangeEffectStatus()
+void EffectManager::UpdateEffectStatus(bool buttonStatus)
 {
-	effect->ChangeEffectStatus();
+	effect->UpdateEffectStatus(buttonStatus);
 }
 
 unsigned int EffectManager::GetParameterOnDisplay()
