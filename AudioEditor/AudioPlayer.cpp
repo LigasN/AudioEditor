@@ -1,9 +1,9 @@
 #include "AudioPlayer.h"
 
-AudioPlayer::AudioPlayer(const std::shared_ptr<Display>& display) : AudioEditorState(display)
+AudioPlayer::AudioPlayer(const std::shared_ptr<Display>& display) : AudioEditorState(display), savingState(false)
 {
 	sf::SoundBuffer buffer;
-	buffer.loadFromFile("TestSound.wav");
+	buffer.loadFromFile("Sound.wav");
 	editedSound = cleanSound = buffer;
 }
 
@@ -115,7 +115,7 @@ void AudioPlayer::SetSavingState()
 
 bool AudioPlayer::Save()
 {
-	if (editedSound.saveToFile("TestSoundEdited.wav"))
+	if (editedSound.saveToFile("SoundEdited.wav"))
 	{
 		display->setText(C_TEXTS::TEXT_ID::TextSaved);
 		return true;

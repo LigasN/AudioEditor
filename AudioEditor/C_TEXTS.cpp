@@ -35,6 +35,10 @@ C_TEXTS::C_TEXTS()
 
 }
 
+C_TEXTS::~C_TEXTS()
+{
+}
+
 C_TEXTS::C_TEXTS(TXT_Handle::LANGUAGES language)
 {
 

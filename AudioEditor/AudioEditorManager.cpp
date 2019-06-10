@@ -24,6 +24,7 @@ void AudioEditorManager::updateState()
 	switch (clickedButton)
 	{
 	case Buttons::MousePositions::playButton:
+		audioPlayer->ResetSavingState();
 
 		buttons->setOff(Buttons::MousePositions::cleanButton);
 
@@ -59,7 +60,8 @@ void AudioEditorManager::updateState()
 
 	case Buttons::MousePositions::cleanButton:
 
-		buttons->setOff(Buttons::MousePositions::playButton);
+		buttons->setOff(Buttons::MousePositions::playButton); 
+		audioPlayer->ResetSavingState();
 
 		switch (currentState->getStateName())
 		{
@@ -112,16 +114,17 @@ void AudioEditorManager::updateState()
 				audioPlayer->Stop();
 			}
 
-			else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
-			{
-				audioPlayer->SetSavingState();
-			}
-
 			else if (!audioPlayer->GetStatus() && audioPlayer->GetSavingState())
 			{
 				audioPlayer->Save();
 				audioPlayer->ResetSavingState();
 			}
+
+			else if (!audioPlayer->GetStatus() && !audioPlayer->GetSavingState())
+			{
+				audioPlayer->SetSavingState();
+			}
+
 
 			break;
 
@@ -133,6 +136,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::rightArrowButton:
+		audioPlayer->ResetSavingState();
 
 		buttons->setOn(Buttons::MousePositions::rightArrowButton);
 
@@ -160,6 +164,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::leftArrowButton:
+		audioPlayer->ResetSavingState();
 
 		buttons->setOn(Buttons::MousePositions::leftArrowButton);
 
@@ -187,6 +192,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::upArrowButton:
+		audioPlayer->ResetSavingState();
 
 		buttons->setOn(Buttons::MousePositions::upArrowButton);
 
@@ -214,6 +220,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::downArrowButton:
+		audioPlayer->ResetSavingState();
 
 		buttons->setOn(Buttons::MousePositions::downArrowButton);
 
@@ -240,6 +247,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::firstEffectButton:
+		audioPlayer->ResetSavingState();
 
 		switch (currentState->getStateName())
 		{
@@ -267,6 +275,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::secondEffectButton:
+		audioPlayer->ResetSavingState();
 
 		switch (currentState->getStateName())
 		{
@@ -294,6 +303,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::thirdEffectButton:
+		audioPlayer->ResetSavingState();
 
 		switch (currentState->getStateName())
 		{
@@ -321,6 +331,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::fourthEffectButton:
+		audioPlayer->ResetSavingState();
 
 		switch (currentState->getStateName())
 		{
@@ -348,6 +359,7 @@ void AudioEditorManager::updateState()
 		break;
 
 	case Buttons::MousePositions::noneButton:
+		audioPlayer->ResetSavingState();
 
 		break;
 
